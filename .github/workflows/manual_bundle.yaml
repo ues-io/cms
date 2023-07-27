@@ -1,0 +1,31 @@
+name: Manual bundle creation
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Deployment Environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - prod
+      type:
+        description: "Bundle type"
+        required: true
+        default: "patch"
+        type: choice
+        options:
+            - patch
+            - minor
+            - major
+
+jobs:
+  bundle:
+    name: Create ${{ inputs.type }} bundle in ${{ inputs.environment }} environment
+    uses: ./.github/workflows/bundle.yaml
+    with:
+      environment: ${{ inputs.environment }}
+      type: ${{ inputs.type }}
+    secrets: inherit

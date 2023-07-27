@@ -1,0 +1,22 @@
+name: Main Branch Build
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy_dev:
+    name: Create patch bundle in dev
+    uses: ./.github/workflows/bundle.yaml
+    with:
+      environment: dev
+      type: patch
+    secrets: inherit
+  deploy_prod:
+    name: Create patch bundle in prod
+    needs: deploy_dev
+    uses: ./.github/workflows/bundle.yaml
+    with:
+      environment: prod
+      type: patch
+    secrets: inherit

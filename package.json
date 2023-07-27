@@ -6,8 +6,7 @@
 		"build": "uesio pack",
 		"lint": "prettier --check . && eslint bundle/**/*.js* && tsc --noEmit",
 		"push": "uesio pack && uesio workspace deploy",
-		"pull": "uesio workspace retrieve",
-		"publish": "uesio bundle create -t=patch"
+		"pull": "uesio workspace retrieve"
 	},
 	"devDependencies": {
 		"@types/react": "^18.2.0",

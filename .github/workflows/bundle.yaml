@@ -1,9 +1,12 @@
-name: Patch bundle
+name: Create a bundle
 
 on:
   workflow_call:
     inputs:
       environment:
+        type: string
+        required: true
+      type:
         type: string
         required: true
     secrets:
@@ -43,5 +46,6 @@ jobs:
           UESIO_CLI_USERNAME: ${{ secrets.UESIO_CLI_USERNAME }}
           UESIO_CLI_PASSWORD: ${{ secrets.UESIO_CLI_PASSWORD }}
           UESIO_CLI_HOST: ${{ vars.UESIO_CLI_HOST }}
-          UESIO_CLI_LOGIN_METHOD: uesio/core.platform
-        run: bash ./patch-release.sh
+          UESIO_CLI_LOGIN_METHOD: ${{ vars.UESIO_CLI_LOGIN_METHOD }}
+          RELEASE_TYPE: ${{ inputs.type }}
+        run: bash ./create-bundle.sh
