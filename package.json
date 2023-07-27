@@ -4,7 +4,7 @@
 	"description": "",
 	"scripts": {
 		"build": "uesio pack",
-		"lint": "prettier --check . && eslint bundle/**/*.js* && tsc --noEmit",
+		"lint": "prettier --check . && eslint bundle/**/*.ts* && tsc --noEmit",
 		"push": "uesio pack && uesio workspace deploy",
 		"pull": "uesio workspace retrieve"
 	},
