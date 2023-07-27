@@ -1,9 +1,11 @@
-function slugify(bot) {
+import { BeforeSaveBotApi } from "@uesio/bots"
+
+function slugify(bot: BeforeSaveBotApi) {
 	;[...bot.inserts.get(), ...bot.updates.get()].forEach((r) => {
 		// If no slug, slugify the title
-		const slug = r.get("uesio/cms.slug")
+		const slug = r.get("uesio/cms.slug") as string
 		if (!slug) {
-			const title = r.get("uesio/cms.name")
+			const title = r.get("uesio/cms.name") as string
 			if (!title) throw new Error("Missing title")
 			return r.set(
 				"uesio/cms.slug",
