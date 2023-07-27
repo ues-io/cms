@@ -1,0 +1,5 @@
+name: slugify
+public: true
+collection: uesio/cms.article
+type: BEFORESAVE
+dialect: JAVASCRIPT

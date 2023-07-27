@@ -1,0 +1,8 @@
+name: articles
+public: true
+path: articles
+view: uesio/cms.articles
+redirect: ""
+theme: ""
+type: ""
+title: ""
