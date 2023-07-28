@@ -26,10 +26,10 @@ jobs:
       type: ${{ inputs.type }}
     secrets: inherit
   bundle_prod:
-      name: Create ${{ inputs.type }} bundle in PROD environment
-      uses: ./.github/workflows/bundle.yaml
-      needs: bundle_dev
-      with:
-        environment: prod
-        type: ${{ inputs.type }}
-      secrets: inherit
+    name: Create ${{ inputs.type }} bundle in PROD environment
+    uses: ./.github/workflows/bundle.yaml
+    needs: bundle_dev
+    with:
+      environment: prod
+      type: ${{ inputs.type }}
+    secrets: inherit
