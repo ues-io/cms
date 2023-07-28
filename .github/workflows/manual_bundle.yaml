@@ -1,16 +1,12 @@
 name: Manual bundle creation
 
+# We must always create the same bundles in dev and prod for consistency,
+# otherwise builds of web/docs/etc. apps may succeed to dev but fail in prod,
+# or vice versa
+
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: "Deployment Environment"
-        required: true
-        default: "dev"
-        type: choice
-        options:
-          - dev
-          - prod
       type:
         description: "Bundle type"
         required: true
@@ -22,10 +18,18 @@ on:
           - major
 
 jobs:
-  bundle:
-    name: Create ${{ inputs.type }} bundle in ${{ inputs.environment }} environment
+  bundle_dev:
+    name: Create ${{ inputs.type }} bundle in DEV environment
     uses: ./.github/workflows/bundle.yaml
     with:
-      environment: ${{ inputs.environment }}
+      environment: dev
       type: ${{ inputs.type }}
     secrets: inherit
+  bundle_prod:
+      name: Create ${{ inputs.type }} bundle in PROD environment
+      uses: ./.github/workflows/bundle.yaml
+      needs: bundle_dev
+      with:
+        environment: prod
+        type: ${{ inputs.type }}
+      secrets: inherit

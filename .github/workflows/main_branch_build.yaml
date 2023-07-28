@@ -5,16 +5,16 @@ on:
       - main
 
 jobs:
-  deploy_dev:
-    name: Create patch bundle in dev
+  bundle_dev:
+    name: Create patch bundle in DEV
     uses: ./.github/workflows/bundle.yaml
     with:
       environment: dev
       type: patch
     secrets: inherit
-  deploy_prod:
-    name: Create patch bundle in prod
-    needs: deploy_dev
+  bundle_prod:
+    name: Create patch bundle in PROD
+    needs: bundle_dev
     uses: ./.github/workflows/bundle.yaml
     with:
       environment: prod
