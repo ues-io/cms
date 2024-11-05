@@ -1,6 +1,5 @@
 name: content
-type: FILE
 label: Content
+type: FILE
 file:
   accept: DOCUMENT
-  filesource: uesio/core.platform

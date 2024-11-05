@@ -1,8 +1,4 @@
 name: article_list
 public: true
 path: articles
-view: uesio/cms.article_list
-redirect: ""
-theme: ""
-type: ""
-title: ""
+view: article_list

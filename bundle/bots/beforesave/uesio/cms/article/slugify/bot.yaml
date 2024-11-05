@@ -1,5 +1,5 @@
 name: slugify
 public: true
-collection: uesio/cms.article
+collection: article
 type: BEFORESAVE
 dialect: TYPESCRIPT

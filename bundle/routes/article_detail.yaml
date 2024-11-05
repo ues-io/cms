@@ -1,8 +1,4 @@
 name: article_detail
 public: true
 path: article/{recordid}
-view: uesio/cms.article_detail
-redirect: ""
-theme: ""
-type: ""
-title: ""
+view: article_detail

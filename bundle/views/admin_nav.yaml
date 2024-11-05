@@ -15,7 +15,7 @@ definition:
           - $Slot{crumbs}
         content:
           - uesio/io.navsection:
-              title:  CMS Admin
+              title: CMS Admin
               content:
                 - uesio/appkit.icontile:
                     tileVariant: uesio/io.nav
