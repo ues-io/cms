@@ -1,7 +1,7 @@
-name: articles
+name: article_list
 public: true
 path: articles
-view: uesio/cms.articles
+view: uesio/cms.article_list
 redirect: ""
 theme: ""
 type: ""

@@ -1,7 +1,7 @@
 name: article
 public: true
-label: article
-pluralLabel: articles
+label: Article
+pluralLabel: Articles
 uniqueKey:
   - uesio/cms.slug
 nameField: uesio/cms.name

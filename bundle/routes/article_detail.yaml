@@ -1,7 +1,7 @@
-name: article_details
+name: article_detail
 public: true
 path: article/{recordid}
-view: uesio/cms.article_details
+view: uesio/cms.article_detail
 redirect: ""
 theme: ""
 type: ""

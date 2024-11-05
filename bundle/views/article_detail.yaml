@@ -1,4 +1,4 @@
-name: article_details
+name: article_detail
 public: true
 definition:
   # Wires connect to data in collections

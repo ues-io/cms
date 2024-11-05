@@ -4,7 +4,7 @@ homeRoute: uesio/cms.home
 defaultTheme: uesio/core.default
 publicProfile: uesio/core.public
 dependencies:
-  uesio/builder:
+  uesio/appkit:
     version: v0.0.1
   uesio/core:
     version: v0.0.1
