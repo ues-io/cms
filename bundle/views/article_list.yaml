@@ -24,8 +24,8 @@ definition:
                       components:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
-                            title: Home
-                            icon: home
+                            title: Articles
+                            icon: article
         content:
           - uesio/appkit.form_list:
               wire: articles

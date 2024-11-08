@@ -3,70 +3,188 @@ public: true
 definition:
   # Wires connect to data in collections
   wires:
-    articleWire:
+    article:
       collection: uesio/cms.article
       fields:
         uesio/cms.content:
         uesio/cms.name:
+        uesio/cms.description:
         uesio/cms.slug:
+        uesio/core.owner:
+        uesio/core.updatedat:
+        uesio/core.updatedby:
+        uesio/core.createdat:
+        uesio/core.createdby:
       conditions:
         - field: uesio/core.id
           value: $Param{recordid}
+    attachment:
+      collection: uesio/core.userfile
+      fields:
+        uesio/core.data:
+      conditions:
+        - field: uesio/core.recordid
+          value: $Param{recordid}
+        - field: uesio/core.collectionid
+          value: uesio/cms.article
+        - field: uesio/core.fieldid
+          value: uesio/cms.content
+      init:
+        query: true
+        create: true
+      defaults:
+        - field: uesio/core.recordid
+          value: $Param{recordid}
+        - field: uesio/core.collectionid
+          value: uesio/cms.article
+        - field: uesio/core.fieldid
+          value: uesio/cms.content
+        - field: uesio/core.filesourceid
+          value: uesio/core.platform
+        - field: uesio/core.path
+          value: article.md
   # Components determine the layout and composition of your view
   components:
-    - uesio/io.box:
-        uesio.styleTokens:
-          root:
-            - p-10
-        components:
-          - uesio/io.list:
-              uesio.id: articleList
-              wire: articleWire
-              mode: READ
-              components:
-                - uesio/io.titlebar:
-                    title: cms.article
-                    uesio.variant: uesio/io.main
-                    actions:
-                      - uesio/io.group:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.group:
+                      uesio.variant: uesio/appkit.breadcrumbs
+                      components:
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: Articles
+                            icon: article
+                            signals:
+                              - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                collection: uesio/cms.article
+                                viewtype: list
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            avatarVariant: uesio/appkit.breadcrumb
+                            title: ${article:uesio/cms.name}
+        content:
+          - uesio/appkit.form_detail:
+              wire: article
+              avataricon: article
+              actions:
+                - uesio/io.button:
+                    signals:
+                      - signal: wire/SAVE
+                        wires:
+                          - article
+                          - attachment
+                    text: Save
+                    hotkey: "meta+s"
+                    uesio.variant: uesio/appkit.primary
+                    uesio.display:
+                      - type: group
+                        conjunction: OR
+                        conditions:
+                          - type: wireHasChanges
+                            operator: EQUALS
+                            wire: article
+                          - type: wireHasChanges
+                            operator: EQUALS
+                            wire: attachment
+                - uesio/io.button:
+                    signals:
+                      - signal: wire/CANCEL
+                        wire: article
+                      - signal: wire/CANCEL
+                        wire: attachment
+                    text: Cancel
+                    uesio.variant: uesio/appkit.secondary
+                    uesio.display:
+                      - type: group
+                        conjunction: OR
+                        conditions:
+                          - type: wireHasChanges
+                            operator: EQUALS
+                            wire: article
+                          - type: wireHasChanges
+                            operator: EQUALS
+                            wire: attachment
+                - uesio/io.button:
+                    signals:
+                      - signal: component/CALL
+                        component: uesio/io.item
+                        componentsignal: TOGGLE_MODE
+                        targettype: specific
+                        componentid: article_item
+                    text: Read
+                    uesio.variant: uesio/appkit.secondary
+                    icon: task_alt
+                    uesio.display:
+                      - type: mergeValue
+                        operator: EQUALS
+                        sourceValue: $FieldMode{}
+                        value: EDIT
+                      - type: wireHasNoChanges
+                        operator: EQUALS
+                        wire: article
+                      - type: wireHasNoChanges
+                        operator: EQUALS
+                        wire: attachment
+                - uesio/io.button:
+                    signals:
+                      - signal: component/CALL
+                        component: uesio/io.item
+                        componentsignal: TOGGLE_MODE
+                        targettype: specific
+                        componentid: article_item
+                    text: EDIT
+                    uesio.variant: uesio/appkit.secondary
+                    icon: edit_square
+                    iconFill: false
+                    uesio.display:
+                      - type: mergeValue
+                        operator: NOT_EQUALS
+                        sourceValue: $FieldMode{}
+                        value: EDIT
+                      - type: wireHasNoChanges
+                        operator: EQUALS
+                        wire: article
+                      - type: wireHasNoChanges
+                        operator: EQUALS
+                        wire: attachment
+              content:
+                - uesio/io.box:
+                    uesio.variant: uesio/appkit.primarysection
+                    components:
+                      - uesio/io.grid:
+                          uesio.variant: uesio/appkit.two_columns
+                          items:
+                            - uesio/io.field:
+                                fieldId: uesio/cms.name
+                            - uesio/io.field:
+                                fieldId: uesio/cms.slug
+                      - uesio/io.field:
+                          fieldId: uesio/cms.description
+                - uesio/io.box:
+                    uesio.variant: uesio/appkit.section
+                    components:
+                      - uesio/io.item:
+                          uesio.id: botAttachmentsList
+                          wire: attachment
+                          mode: EDIT
                           components:
-                            - uesio/io.button:
-                                uesio.variant: uesio/io.primary
-                                text: $Label{uesio/io.save}
-                                signals:
-                                  - signal: component/CALL
-                                    componenttype: uesio/io.field
-                                    componentsignal: UPLOAD_FILE
-                                    targettype: specific
-                                    componentid: mdeditor
-                            - uesio/io.button:
-                                uesio.variant: uesio/io.secondary
-                                text: $Label{uesio/io.cancel}
-                                signals:
-                                  - signal: component/CALL
-                                    componenttype: uesio/io.field
-                                    componentsignal: CANCEL_FILE
-                                    targettype: specific
-                                    componentid: mdeditor
-                - uesio/io.grid:
-                    uesio.variant: uesio/io.two_columns
-                    items:
-                      - uesio/io.field:
-                          fieldId: uesio/cms.name
-                      - uesio/io.field:
-                          fieldId: uesio/cms.slug
-                - uesio/io.grid:
-                    uesio.variant: uesio/io.two_columns
-                    items:
-                      - uesio/io.field:
-                          uesio.context:
-                            fieldMode: EDIT
-                          labelPosition: none
-                          fieldId: uesio/cms.content
-                          displayAs: MARKDOWN
-                          uesio.id: mdeditor
-                      - uesio/io.field:
-                          fieldId: uesio/cms.content
-                          labelPosition: none
-                          displayAs: MARKDOWN
-                          uesio.id: mdpreview
+                            - uesio/io.grid:
+                                uesio.variant: uesio/appkit.two_columns
+                                items:
+                                  - uesio/io.fileattachment:
+                                      displayAs: TEXT
+                                      textOptions:
+                                        language: markdown
+                                  - uesio/io.field:
+                                      fieldId: uesio/core.data
+                                      uesio.context:
+                                        fieldMode: READ
+                                      labelPosition: none
+                                      displayAs: MARKDOWN
+
+
