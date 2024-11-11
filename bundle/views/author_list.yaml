@@ -1,0 +1,61 @@
+name: author_list
+definition:
+  # Wires connect to data in collections
+  wires:
+    author:
+      collection: uesio/cms.author
+      fields:
+        uesio/cms.firstname:
+        uesio/cms.lastname:
+        uesio/cms.external_id:
+        uesio/cms.title:
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.group:
+                      uesio.variant: uesio/appkit.breadcrumbs
+                      components:
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: $Collection{author:pluralLabel}
+                            icon: $Collection{author:icon}
+        content:
+          - uesio/appkit.form_list:
+              wire: author
+              avataricon: person
+              linkedComponentType: uesio/io.table
+              linkedComponentId: authorTable
+              filters:
+                - uesio/io.searchbox:
+                    uesio.variant: uesio/appkit.main
+                    wire: author
+                    placeholder: Search $Collection{author:pluralLabel}
+              content:
+                - uesio/io.table:
+                    uesio.variant: uesio/appkit.main
+                    selectable: true
+                    rowactions:
+                      - icon: visibility
+                        text: View
+                        type: DEFAULT
+                        uesio.display:
+                          - type: recordIsNotNew
+                        signals:
+                          - signal: route/NAVIGATE_TO_ASSIGNMENT
+                            viewtype: detail
+                            recordid: ${uesio/core.id}
+                            collection: uesio/cms.author
+                    columns:
+                      - field: uesio/cms.firstname
+                      - field: uesio/cms.lastname
+                      - field: uesio/cms.external_id
+                      - field: uesio/cms.title
+                    uesio.id: authorTable
+                    wire: author
+                    pagesize: 10

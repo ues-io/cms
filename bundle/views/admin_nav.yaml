@@ -26,6 +26,33 @@ definition:
                       - signal: route/NAVIGATE_TO_ASSIGNMENT
                         collection: uesio/cms.article
                         viewtype: list
+                    actions:
+                      - uesio/io.button:
+                          uesio.variant: uesio/appkit.navicon_small
+                          icon: add
+                          signals:
+                            - signal: route/NAVIGATE_TO_ASSIGNMENT
+                              preventLinkTag: true
+                              collection: uesio/cms.article
+                              viewtype: createnew
+                - uesio/appkit.icontile:
+                    tileVariant: uesio/io.nav
+                    title: Authors
+                    icon: person
+                    selectedid: $Prop{selected}
+                    signals:
+                      - signal: route/NAVIGATE_TO_ASSIGNMENT
+                        collection: uesio/cms.author
+                        viewtype: list
+                    actions:
+                      - uesio/io.button:
+                          uesio.variant: uesio/appkit.navicon_small
+                          icon: add
+                          signals:
+                            - signal: route/NAVIGATE_TO_ASSIGNMENT
+                              preventLinkTag: true
+                              collection: uesio/cms.author
+                              viewtype: createnew
           - $Slot{extra}
         footer:
           - uesio/io.titlebar:

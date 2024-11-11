@@ -1,0 +1,90 @@
+name: author_detail
+definition:
+  # Wires connect to data in collections
+  wires:
+    author:
+      collection: uesio/cms.author
+      fields:
+        uesio/cms.firstname:
+        uesio/cms.lastname:
+        uesio/cms.external_id:
+        uesio/cms.title:
+        uesio/cms.picture:
+        uesio/cms.initials:
+        uesio/cms.fullname:
+        uesio/core.updatedby:
+        uesio/core.updatedat:
+        uesio/core.createdby:
+        uesio/core.createdat:
+        uesio/core.owner:
+      conditions:
+        - field: uesio/core.id
+          valueSource: PARAM
+          param: recordid
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.item:
+                      wire: author
+                      components:
+                        - uesio/io.group:
+                            uesio.variant: uesio/appkit.breadcrumbs
+                            components:
+                              - uesio/appkit.icontile:
+                                  tileVariant: uesio/appkit.breadcrumb
+                                  title: $Collection{pluralLabel}
+                                  icon: $Collection{icon}
+                                  signals:
+                                    - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                      collection: uesio/cms.author
+                                      viewtype: list
+                              - uesio/appkit.icontile:
+                                  tileVariant: uesio/appkit.breadcrumb
+                                  avatarVariant: uesio/appkit.breadcrumb
+                                  title: ${uesio/cms.fullname}
+                                  initials: ${uesio/cms.initials}
+                                  imagefield: uesio/cms.picture
+        content:
+          - uesio/io.box:
+              uesio.display:
+                - type: paramIsSet
+                  param: recordid
+              components:
+                - uesio/appkit.layout_detail_split:
+                    main:
+                      - uesio/appkit.form_detail:
+                          wire: author
+                          imagefield: uesio/cms.picture
+                          initials: ${author:initials}
+                          content:
+                            - uesio/io.box:
+                                uesio.variant: uesio/appkit.primarysection
+                                components:
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.firstname
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.lastname
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.title
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.external_id
+                    left:
+          - uesio/io.box:
+              uesio.variant: uesio/io.section
+              uesio.display:
+                - type: paramIsNotSet
+                  param: recordid
+              components:
+                - uesio/io.text:
+                    text: Select a record
+  params:
+    recordid:
+      type: RECORD
+      required: true
+      collection: uesio/cms.author

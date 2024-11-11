@@ -1,0 +1,5 @@
+name: author_detail
+path: author/detail/{recordid}
+view: author_detail
+theme: uesio/core.default
+title: author Detail

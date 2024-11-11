@@ -1,0 +1,5 @@
+name: article_new
+path: article/new/{recordid}
+view: article_new
+theme: uesio/core.default
+title: New Article

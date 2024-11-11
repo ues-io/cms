@@ -1,0 +1,58 @@
+name: article_new
+definition:
+  # Wires connect to data in collections
+  wires:
+    article:
+      collection: uesio/cms.article
+      fields:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.author:
+        uesio/core.updatedby:
+        uesio/core.updatedat:
+        uesio/core.createdby:
+        uesio/core.createdat:
+        uesio/core.owner:
+      init:
+        create: true
+        query: false
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.group:
+                      uesio.variant: uesio/appkit.breadcrumbs
+                      components:
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: $Collection{article:pluralLabel}
+                            icon: $Collection{article:icon}
+                            signals:
+                              - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                collection: uesio/cms.article
+                                viewtype: list
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: New
+        content:
+          - uesio/appkit.layout_detail_split:
+              main:
+                - uesio/appkit.form_new:
+                    wire: article
+                    avataricon: person
+                    content:
+                      - uesio/io.box:
+                          uesio.variant: uesio/appkit.primarysection
+                          components:
+                            - uesio/io.field:
+                                fieldId: uesio/cms.name
+                            - uesio/io.field:
+                                fieldId: uesio/cms.description
+                            - uesio/io.field:
+                                fieldId: uesio/cms.author
+              left:

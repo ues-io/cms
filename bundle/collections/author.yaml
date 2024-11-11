@@ -1,0 +1,7 @@
+name: author
+label: Author
+public: true
+pluralLabel: Authors
+uniqueKey:
+  - external_id
+nameField: lastname

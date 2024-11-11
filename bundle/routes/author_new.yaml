@@ -1,0 +1,5 @@
+name: author_new
+path: author/new/{recordid}
+view: author_new
+theme: uesio/core.default
+title: New Author

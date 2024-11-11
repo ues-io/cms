@@ -10,6 +10,7 @@ definition:
         uesio/cms.name:
         uesio/cms.description:
         uesio/cms.slug:
+        uesio/cms.author:
         uesio/core.owner:
         uesio/core.updatedat:
         uesio/core.updatedby:
@@ -163,6 +164,8 @@ definition:
                                 fieldId: uesio/cms.name
                             - uesio/io.field:
                                 fieldId: uesio/cms.slug
+                            - uesio/io.field:
+                                fieldId: uesio/cms.author
                       - uesio/io.field:
                           fieldId: uesio/cms.description
                 - uesio/io.box:
@@ -186,5 +189,3 @@ definition:
                                         fieldMode: READ
                                       labelPosition: none
                                       displayAs: MARKDOWN
-
-

@@ -1,0 +1,6 @@
+name: fullname
+label: Fullname
+type: FORMULA
+formula:
+  expression: TO_STRING(uesio/cms.firstname) + " " + TO_STRING(uesio/cms.lastname)
+  returntype: TEXT
