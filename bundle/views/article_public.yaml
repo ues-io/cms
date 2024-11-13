@@ -1,0 +1,120 @@
+name: article_public
+public: true
+definition:
+  slots:
+    - name: header
+      defaultContent:
+        - uesio/io.box:
+            uesio.styleTokens:
+              root:
+                - min-h-[86px]
+                - bg-white
+    - name: left
+      defaultContent:
+        - uesio/io.box:
+            components:
+      providesContexts:
+        - type: WIRE
+        - type: RECORD
+  # Wires connect to data in collections
+  wires:
+    article:
+      collection: uesio/cms.article
+      fields:
+        uesio/cms.slug:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.author:
+          fields:
+            uesio/cms.firstname:
+            uesio/cms.lastname:
+            uesio/cms.title:
+            uesio/cms.initials:
+            uesio/cms.picture:
+        uesio/cms.content:
+      conditions:
+        - field: uesio/cms.slug
+          param: slug
+          valueSource: PARAM
+    attachments:
+      collection: uesio/core.userfile
+      fields:
+        uesio/core.path:
+        uesio/core.recordid:
+        uesio/core.updatedat:
+      conditions:
+        - field: uesio/core.recordid
+          valueSource: LOOKUP
+          lookupWire: article
+          lookupField: uesio/core.id
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.item:
+        wire: article
+        components:
+          - uesio/io.viewlayout:
+              uesio.variant: uesio/cms.default
+              header:
+                - $Slot{header}
+              left:
+                - uesio/appkit.sidebar:
+                    uesio.variant: uesio/cms.main
+                    trigger:
+                      - uesio/sitekit.section:
+                          content:
+                            - uesio/io.group:
+                                components:
+                                  - uesio/io.button:
+                                      uesio.styleTokens:
+                                        root:
+                                          - text-xl
+                                          - px-[5px]
+                                          - py-1
+                                      icon: menu
+                                      signals:
+                                        - signal: component/CALL
+                                          component: uesio/io.dynamicpanel
+                                          componentsignal: TOGGLE
+                                          targettype: specific
+                                          componentid: menutoggle
+                                  - uesio/io.group:
+                                      uesio.variant: uesio/appkit.breadcrumbs
+                                      components:
+                                        - uesio/appkit.icontile:
+                                            tileVariant: uesio/appkit.breadcrumb
+                                            title: ${name}
+                    content:
+                      - $Slot{left}
+              right:
+                - uesio/cms.navsection:
+                    title: Table of Contents
+                    items:
+                      - uesio/io.markdownnavigation:
+                          uesio.variant: uesio/io.tile:uesio/cms.navitem
+                          fieldId: uesio/cms.content
+              content:
+                - uesio/io.titlebar:
+                    uesio.variant: uesio/cms.article
+                    title: ${name}
+                    subtitle: ${description}
+                    actions:
+                      - uesio/appkit.item:
+                          uesio.styleTokens:
+                            root:
+                              - p-0
+                          title: ${author->firstname} ${author->lastname}
+                          subtitle: ${author->title}
+                          initials: ${author->initials}
+                          imagefield: author->picture
+                          avatarVariant: uesio/io.default
+                - uesio/io.field:
+                    uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
+                    fieldId: uesio/cms.content
+                    labelPosition: none
+                    displayAs: MARKDOWN
+                    markdown:
+                      attachmentsWire: attachments
+  params:
+    slug:
+      type: TEXT
+      required: true

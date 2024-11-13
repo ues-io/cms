@@ -1,0 +1,35 @@
+name: main
+label: Main
+public: true
+definition:
+  scrollpanelVariant: uesio/io.default
+  uesio.styleTokens:
+    inner:
+      - lg:p-0
+      - lg:pt-0
+      - p-6
+      - pt-4
+      - "[scrollbar-width:none]"
+    triggerInner:
+    triggerHeader:
+      - hidden
+    triggerRoot:
+      - flex
+      - lg:hidden
+      - w-auto
+      - md:w-auto
+      - border-b-1
+      - border-slate-200
+    menuRoot:
+      - mt-[125px]
+    expandedRoot:
+      - lg:flex
+      - hidden
+    expandedInner:
+      - md:grid
+      - hidden
+    expandedFooter:
+      - md:block
+      - hidden
+variants:
+  - uesio/io.scrollpanel:uesio/io.default

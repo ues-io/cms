@@ -75,6 +75,20 @@ definition:
               actions:
                 - uesio/io.button:
                     signals:
+                      - signal: route/NAVIGATE
+                        path: /public/articles/${slug}
+                    text: Preview
+                    icon: visibility
+                    uesio.variant: uesio/appkit.secondary
+                    uesio.display:
+                      - type: wireHasNoChanges
+                        operator: EQUALS
+                        wire: article
+                      - type: wireHasNoChanges
+                        operator: EQUALS
+                        wire: attachment
+                - uesio/io.button:
+                    signals:
                       - signal: wire/SAVE
                         wires:
                           - article
@@ -183,9 +197,21 @@ definition:
                                       displayAs: TEXT
                                       textOptions:
                                         language: markdown
-                                  - uesio/io.field:
-                                      fieldId: uesio/core.data
-                                      uesio.context:
-                                        fieldMode: READ
-                                      labelPosition: none
-                                      displayAs: MARKDOWN
+                                  - uesio/io.box:
+                                      uesio.styleTokens:
+                                        root:
+                                          - h-[400px]
+                                          - overflow-auto
+                                      components:
+                                        - uesio/io.field:
+                                            uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
+                                            fieldId: uesio/core.data
+                                            uesio.context:
+                                              fieldMode: READ
+                                            labelPosition: none
+                                            displayAs: MARKDOWN
+  params:
+    recordid:
+      type: RECORD
+      required: true
+      collection: uesio/cms.article

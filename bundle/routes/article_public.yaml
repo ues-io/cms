@@ -1,0 +1,10 @@
+name: article_public
+public: true
+path: public/articles/{slug}
+view: article_public
+title: $Record{article:uesio/cms.name}
+tags:
+  - type: meta
+    location: head
+    name: description
+    content: $Record{article:uesio/cms.description}

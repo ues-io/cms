@@ -1,0 +1,43 @@
+name: public
+public: true
+named: {}
+views:
+  uesio/cms.article_public: true
+collections:
+  uesio/cms.article:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.author:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/core.userfile:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
+routes:
+  uesio/cms.article_public: true
+files: {}
+bots: {}
+integrationActions: {}
+allowallbots: false
+allowallcollections: false
+allowallviews: false
+allowallroutes: false
+allowallfiles: true
+allowallintegrationactions: false
+modifyallrecords: false
+viewallrecords: false
