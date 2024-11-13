@@ -1,0 +1,22 @@
+name: navitem
+label: Nav Item
+public: true
+extends: uesio/io.nav
+definition:
+  uesio.styleTokens:
+    root:
+      - px-2.5
+      - border-l-4
+      - border-transparent
+      - rounded-none
+    selected:
+      - border-accent-500
+      - bg-slate-50
+      - text-black-80
+      - focus:bg-slate-50
+      - hover:bg-slate-50
+      - focus:text-black-80
+      - hover:text-black-80
+    actionable:
+      - hover:border-slate-200
+      - hover:bg-slate-50

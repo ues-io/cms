@@ -1,0 +1,56 @@
+name: default
+label: Default
+public: true
+extends: uesio/io.default
+definition:
+  uesio.styleTokens:
+    root:
+      - xl:grid-cols-[minmax(80px,auto)_280px_minmax(auto,688px)_280px_minmax(80px,auto)]
+      - lg:grid-cols-[minmax(80px,auto)_280px_minmax(auto,968px)_minmax(80px,auto)]
+      - md:grid-cols-none
+    header:
+      - xl:col-span-5
+      - lg:col-span-4
+      - md:col-span-1
+      - sticky
+      - top-0
+      - border-b-1
+      - border-slate-200
+      - z-20
+    content:
+      - lg:col-start-3
+      - lg:col-end-3
+      - lg:row-start-2
+      - md:col-start-1
+      - md:col-end-1
+      - md:row-start-3
+      - lg:p-0
+      - lg:pt-8
+      - lg:pb-64
+      - md:p-10
+      - p-6
+    left:
+      - lg:col-start-2
+      - lg:col-end-2
+      - lg:h-[calc(100vh_-_180px)]
+      - lg:sticky
+      - lg:top-[134px]
+      - lg:mr-12
+      - md:h-auto
+      - md:col-start-1
+      - md:col-end-1
+      - sticky
+      - top-[87px]
+      - bg-white/90
+      - backdrop-blur
+      - z-20
+    right:
+      - xl:col-start-4
+      - xl:col-end-4
+      - xl:row-start-2
+      - xl:h-[calc(100vh_-_180px)]
+      - xl:sticky
+      - xl:top-[134px]
+      - xl:ml-12
+      - xl:block
+      - hidden

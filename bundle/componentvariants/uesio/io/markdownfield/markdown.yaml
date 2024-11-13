@@ -1,0 +1,56 @@
+name: markdown
+label: Markdown
+public: true
+extends: uesio/io.default
+definition:
+  uesio.styleTokens:
+    h1:
+      - text-4xl
+      - "[scroll-margin-top:110px]"
+      - font-bold
+      - text-black/80
+      - mt-2
+      - mb-1
+    h2:
+      - text-2xl
+      - "[scroll-margin-top:110px]"
+      - font-bold
+      - text-black/80
+      - mt-2
+      - mb-1
+    h3:
+      - text-base
+      - "[scroll-margin-top:110px]"
+      - text-black/80
+      - mt-2
+      - mb-1
+    h6:
+      - text-xs
+      - text-slate-500
+      - font-light
+      - uppercase
+      - "[scroll-margin-top:110px]"
+      - my-1
+    p:
+      - mb-6
+      - text-base
+      - text-black/70
+    code:
+      - rounded-lg
+      - text-sm
+    ol:
+      - list-decimal
+      - list-inside
+      - font-light
+      - mb-6
+    ul:
+      - font-light
+      - mb-6
+    li:
+      - font-light
+      - mb-4
+    a:
+      - text-blue-600
+    img:
+      - md:max-w-2xl
+      - max-w-full

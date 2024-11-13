@@ -1,0 +1,19 @@
+name: article
+label: article
+public: true
+extends: uesio/io.default
+definition:
+  uesio.styleTokens:
+    root:
+      - my-4
+      - mb-6
+      - flex-col
+    content:
+      - mb-2
+    title:
+      - text-5xl
+      - font-bold
+    subtitle:
+      - text-xl
+      - font-light
+      - text-black/70
