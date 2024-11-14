@@ -1,4 +1,5 @@
 name: author_detail
+public: true
 path: author/detail/{recordid}
 view: author_detail
 theme: uesio/core.default

@@ -1,4 +1,5 @@
 name: author_list
+public: true
 path: author
 view: author_list
 theme: uesio/core.default
