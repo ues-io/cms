@@ -1,4 +1,5 @@
 name: article_new
+public: true
 path: article/new/{recordid}
 view: article_new
 theme: uesio/core.default
