@@ -1,2 +1,3 @@
 type: createnew
 route: author_new
+public: true
