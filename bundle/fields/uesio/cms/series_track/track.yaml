@@ -1,6 +1,6 @@
 name: track
 label: Track
 type: REFERENCE
+required: true
 reference:
   collection: track
-required: true

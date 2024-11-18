@@ -1,6 +1,6 @@
 name: article
 label: Article
 type: REFERENCE
+required: true
 reference:
   collection: article
-required: true

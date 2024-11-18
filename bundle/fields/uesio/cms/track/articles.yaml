@@ -1,6 +1,6 @@
 name: articles
-type: REFERENCEGROUP
 label: Articles
+type: REFERENCEGROUP
 referenceGroup:
   collection: track_article
   field: track

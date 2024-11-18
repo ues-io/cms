@@ -1,6 +1,6 @@
 name: tracks
-type: REFERENCEGROUP
 label: Tracks
+type: REFERENCEGROUP
 referenceGroup:
   collection: series_track
   field: series

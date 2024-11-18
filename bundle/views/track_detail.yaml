@@ -102,83 +102,83 @@ definition:
                             - id: articles
                               label: Articles
                               components:
-                                    - uesio/io.scrollpanel:
-                                        uesio.variant: uesio/appkit.sidebar
-                                        content:
-                                          - uesio/io.deck:
-                                              wire: articles
-                                              mode: READ
-                                              id: articles
-                                              uesio.variant: uesio/appkit.tiles
-                                              components:
-                                                - uesio/io.tile:
-                                                    uesio.variant: uesio/appkit.item
-                                                    content:
-                                                      - uesio/io.titlebar:
-                                                          uesio.variant: uesio/appkit.item
-                                                          title: ${article->name}
-                                                          subtitle: ${article->description}
-                                                          actions:
-                                                            - uesio/io.menubutton:
-                                                                icon: more_horiz
-                                                                buttonVariant: uesio/appkit.itemaction
-                                                                items:
-                                                                  - id: up
-                                                                    label: Move Up
-                                                                    signals:
-                                                                      - signal: wire/UPDATE_RECORD
-                                                                        wire: articles
-                                                                        field: uesio/cms.order
-                                                                        value: $Formula{getField("uesio/cms.order") - 1}
-                                                                      - signal: wire/SAVE
-                                                                      - signal: wire/LOAD
-                                                                  - id: down
-                                                                    label: Move Down
-                                                                    signals:
-                                                                      - signal: wire/UPDATE_RECORD
-                                                                        wire: articles
-                                                                        field: uesio/cms.order
-                                                                        value: $Formula{getField("uesio/cms.order") + 1}
-                                                                      - signal: wire/SAVE
-                                                                      - signal: wire/LOAD
-                                                                  - id: delete
-                                                                    label: Remove Article
-                                                                    signals:
-                                                                      - signal: wire/MARK_FOR_DELETE
-                                                                      - signal: wire/SAVE
-                                                    avatar:
-                                                      - uesio/io.text:
-                                                          text: article
-                                                          uesio.variant: uesio/appkit.avataricon
-                                              emptyState:
-                                                - uesio/io.emptystate:
-                                                    title: No Articles
-                                                    subtitle: You haven't associated any articles with this track yet.
-                                                    icon: article
-                                        footer:
-                                          - uesio/io.item:
-                                              wire: newarticle
-                                              mode: EDIT
-                                              components:
-                                                - uesio/io.box:
-                                                    components:
-                                                      - uesio/io.field:
-                                                          labelPosition: none
-                                                          fieldId: article
-                                                - uesio/io.group:
-                                                    uesio.styleTokens:
-                                                      root:
-                                                        - justify-right
-                                                    components:
-                                                      - uesio/io.button:
-                                                          text: Add
-                                                          uesio.variant: uesio/appkit.secondary_small
-                                                          signals:
-                                                            - signal: wire/SAVE
-                                                            - signal: wire/RESET
-                                                            - signal: wire/LOAD
-                                                              wires:
-                                                                - articles
+                                - uesio/io.scrollpanel:
+                                    uesio.variant: uesio/appkit.sidebar
+                                    content:
+                                      - uesio/io.deck:
+                                          wire: articles
+                                          mode: READ
+                                          id: articles
+                                          uesio.variant: uesio/appkit.tiles
+                                          components:
+                                            - uesio/io.tile:
+                                                uesio.variant: uesio/appkit.item
+                                                content:
+                                                  - uesio/io.titlebar:
+                                                      uesio.variant: uesio/appkit.item
+                                                      title: ${article->name}
+                                                      subtitle: ${article->description}
+                                                      actions:
+                                                        - uesio/io.menubutton:
+                                                            icon: more_horiz
+                                                            buttonVariant: uesio/appkit.itemaction
+                                                            items:
+                                                              - id: up
+                                                                label: Move Up
+                                                                signals:
+                                                                  - signal: wire/UPDATE_RECORD
+                                                                    wire: articles
+                                                                    field: uesio/cms.order
+                                                                    value: $Formula{getField("uesio/cms.order") - 1}
+                                                                  - signal: wire/SAVE
+                                                                  - signal: wire/LOAD
+                                                              - id: down
+                                                                label: Move Down
+                                                                signals:
+                                                                  - signal: wire/UPDATE_RECORD
+                                                                    wire: articles
+                                                                    field: uesio/cms.order
+                                                                    value: $Formula{getField("uesio/cms.order") + 1}
+                                                                  - signal: wire/SAVE
+                                                                  - signal: wire/LOAD
+                                                              - id: delete
+                                                                label: Remove Article
+                                                                signals:
+                                                                  - signal: wire/MARK_FOR_DELETE
+                                                                  - signal: wire/SAVE
+                                                avatar:
+                                                  - uesio/io.text:
+                                                      text: article
+                                                      uesio.variant: uesio/appkit.avataricon
+                                          emptyState:
+                                            - uesio/io.emptystate:
+                                                title: No Articles
+                                                subtitle: You haven't associated any articles with this track yet.
+                                                icon: article
+                                    footer:
+                                      - uesio/io.item:
+                                          wire: newarticle
+                                          mode: EDIT
+                                          components:
+                                            - uesio/io.box:
+                                                components:
+                                                  - uesio/io.field:
+                                                      labelPosition: none
+                                                      fieldId: article
+                                            - uesio/io.group:
+                                                uesio.styleTokens:
+                                                  root:
+                                                    - justify-right
+                                                components:
+                                                  - uesio/io.button:
+                                                      text: Add
+                                                      uesio.variant: uesio/appkit.secondary_small
+                                                      signals:
+                                                        - signal: wire/SAVE
+                                                        - signal: wire/RESET
+                                                        - signal: wire/LOAD
+                                                          wires:
+                                                            - articles
           - uesio/io.box:
               uesio.variant: uesio/io.section
               uesio.display:
