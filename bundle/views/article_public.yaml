@@ -15,7 +15,7 @@ definition:
             uesio.id: tracknav
             view: uesio/cms.track_nav
             params:
-              selected: ${slug}
+              selected: ${article:slug}
       providesContexts:
         - type: WIRE
         - type: RECORD
@@ -39,17 +39,6 @@ definition:
         - field: uesio/cms.slug
           param: slug
           valueSource: PARAM
-    attachments:
-      collection: uesio/core.userfile
-      fields:
-        uesio/core.path:
-        uesio/core.recordid:
-        uesio/core.updatedat:
-      conditions:
-        - field: uesio/core.recordid
-          valueSource: LOOKUP
-          lookupWire: article
-          lookupField: uesio/core.id
   # Components determine the layout and composition of your view
   components:
     - uesio/io.item:
@@ -118,8 +107,6 @@ definition:
                     fieldId: uesio/cms.content
                     labelPosition: none
                     displayAs: MARKDOWN
-                    markdown:
-                      attachmentsWire: attachments
   params:
     slug:
       type: TEXT

@@ -113,6 +113,11 @@ definition:
                                           components:
                                             - uesio/io.tile:
                                                 uesio.variant: uesio/appkit.item
+                                                signals:
+                                                  - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                                    collection: uesio/cms.article
+                                                    viewtype: detail
+                                                    recordid: ${uesio/cms.article->uesio/core.id}
                                                 content:
                                                   - uesio/io.titlebar:
                                                       uesio.variant: uesio/appkit.item

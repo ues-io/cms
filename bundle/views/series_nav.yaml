@@ -1,0 +1,64 @@
+name: series_nav
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    tracks:
+      collection: uesio/cms.series_track
+      fields:
+        uesio/cms.series:
+          fields:
+            uesio/cms.slug:
+        uesio/cms.track:
+          fields:
+            uesio/cms.name:
+      conditions:
+        - field: uesio/cms.series->uesio/cms.slug
+          valueSource: PARAM
+          param: slug
+      order:
+        - field: uesio/cms.order
+          desc: false
+    articles:
+      collection: uesio/cms.track_article
+      fields:
+        uesio/cms.track:
+        uesio/cms.article:
+          fields:
+            uesio/cms.name:
+            uesio/cms.slug:
+      conditions:
+        - field: uesio/cms.track
+          valueSource: LOOKUP
+          lookupField: uesio/cms.track->uesio/core.id
+          lookupWire: tracks
+      order:
+        - field: uesio/cms.order
+          desc: false
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.box:
+        components:
+          - uesio/io.list:
+              wire: tracks
+              components:
+                - uesio/cms.navsection:
+                    title: ${track->name}
+                    items:
+                      - uesio/io.list:
+                          recordDisplay:
+                            - type: mergeValue
+                              sourceValue: ${uesio/cms.track->uesio/core.id}
+                              value: ${tracks:uesio/cms.track->uesio/core.id}
+                          wire: articles
+                          components:
+                            - uesio/cms.navitem:
+                                title: ${article->name}
+                                uesio.id: ${article->slug}
+                                path: public/articles/${article->slug}
+                                namespace: uesio/cms
+                                selectedid: $Param{selected}
+  params:
+    slug:
+      type: TEXT
+      required: true
