@@ -33,7 +33,7 @@ definition:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
                             title: $Collection{author:pluralLabel}
-                            icon: $Collection{author:icon}
+                            icon: person
                             signals:
                               - signal: route/NAVIGATE_TO_ASSIGNMENT
                                 collection: uesio/cms.author

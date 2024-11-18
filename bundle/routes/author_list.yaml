@@ -1,6 +1,6 @@
 name: author_list
 public: true
-path: author
+path: author/list
 view: author_list
 theme: uesio/core.default
 title: author List

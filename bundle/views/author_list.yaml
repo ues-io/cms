@@ -25,7 +25,7 @@ definition:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
                             title: $Collection{author:pluralLabel}
-                            icon: $Collection{author:icon}
+                            icon: person
         content:
           - uesio/appkit.form_list:
               wire: author

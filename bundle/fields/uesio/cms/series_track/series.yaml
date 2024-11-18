@@ -1,0 +1,6 @@
+name: series
+label: Series
+type: REFERENCE
+required: true
+reference:
+  collection: series

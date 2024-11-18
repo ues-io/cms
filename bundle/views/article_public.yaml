@@ -11,8 +11,11 @@ definition:
                 - bg-white
     - name: left
       defaultContent:
-        - uesio/io.box:
-            components:
+        - uesio/core.view:
+            uesio.id: tracknav
+            view: uesio/cms.track_nav
+            params:
+              selected: ${article:slug}
       providesContexts:
         - type: WIRE
         - type: RECORD
@@ -36,17 +39,6 @@ definition:
         - field: uesio/cms.slug
           param: slug
           valueSource: PARAM
-    attachments:
-      collection: uesio/core.userfile
-      fields:
-        uesio/core.path:
-        uesio/core.recordid:
-        uesio/core.updatedat:
-      conditions:
-        - field: uesio/core.recordid
-          valueSource: LOOKUP
-          lookupWire: article
-          lookupField: uesio/core.id
   # Components determine the layout and composition of your view
   components:
     - uesio/io.item:
@@ -63,6 +55,9 @@ definition:
                       - uesio/sitekit.section:
                           content:
                             - uesio/io.group:
+                                uesio.styleTokens:
+                                  root:
+                                    - auto-cols-min
                                 components:
                                   - uesio/io.button:
                                       uesio.styleTokens:
@@ -112,8 +107,6 @@ definition:
                     fieldId: uesio/cms.content
                     labelPosition: none
                     displayAs: MARKDOWN
-                    markdown:
-                      attachmentsWire: attachments
   params:
     slug:
       type: TEXT

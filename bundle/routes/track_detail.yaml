@@ -1,0 +1,4 @@
+name: track_detail
+public: true
+path: track/detail/{recordid}
+view: track_detail

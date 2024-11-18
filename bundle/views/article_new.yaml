@@ -32,7 +32,7 @@ definition:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
                             title: $Collection{article:pluralLabel}
-                            icon: $Collection{article:icon}
+                            icon: article
                             signals:
                               - signal: route/NAVIGATE_TO_ASSIGNMENT
                                 collection: uesio/cms.article

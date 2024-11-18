@@ -1,0 +1,4 @@
+name: series_detail
+public: true
+path: series/detail/{recordid}
+view: series_detail

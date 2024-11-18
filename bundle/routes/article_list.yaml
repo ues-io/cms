@@ -1,4 +1,4 @@
 name: article_list
 public: true
-path: articles
+path: article/list
 view: article_list

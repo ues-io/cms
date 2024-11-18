@@ -40,7 +40,7 @@ definition:
                               - uesio/appkit.icontile:
                                   tileVariant: uesio/appkit.breadcrumb
                                   title: $Collection{pluralLabel}
-                                  icon: $Collection{icon}
+                                  icon: person
                                   signals:
                                     - signal: route/NAVIGATE_TO_ASSIGNMENT
                                       collection: uesio/cms.author

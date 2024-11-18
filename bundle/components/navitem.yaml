@@ -10,7 +10,7 @@ properties:
     label: Path to the associated cms article
 definition:
   - uesio/appkit.icontile:
-      uesio.id: $Prop{path}
+      uesio.id: $Prop{uesio.id}
       selectedid: $Prop{selectedid}
       tileVariant: uesio/cms.navitem
       title: $Prop{title}

@@ -8,6 +8,7 @@ definition:
       - xl:grid-cols-[minmax(80px,auto)_280px_minmax(auto,688px)_280px_minmax(80px,auto)]
       - lg:grid-cols-[minmax(80px,auto)_280px_minmax(auto,968px)_minmax(80px,auto)]
       - md:grid-cols-none
+      - md:grid-rows-[auto_auto_1fr_auto_auto]
     header:
       - xl:col-span-5
       - lg:col-span-4

@@ -1,0 +1,6 @@
+name: series_new
+public: true
+path: series/new
+view: series_new
+theme: uesio/core.default
+title: New Series

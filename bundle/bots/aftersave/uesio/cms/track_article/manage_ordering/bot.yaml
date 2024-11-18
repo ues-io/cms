@@ -1,0 +1,5 @@
+name: manage_ordering
+public: true
+collection: track_article
+type: AFTERSAVE
+dialect: TYPESCRIPT

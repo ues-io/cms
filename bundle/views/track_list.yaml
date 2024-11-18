@@ -1,0 +1,63 @@
+name: track_list
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    tracks:
+      collection: uesio/cms.track
+      fields:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.slug:
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.group:
+                      uesio.variant: uesio/appkit.breadcrumbs
+                      components:
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: Tracks
+                            icon: library_books
+        content:
+          - uesio/appkit.form_list:
+              wire: tracks
+              avataricon: library_books
+              linkedComponentType: uesio/io.table
+              linkedComponentId: trackTable
+              filters:
+                - uesio/io.searchbox:
+                    uesio.variant: uesio/appkit.main
+                    wire: tracks
+                    placeholder: Search Tracks
+                    searchFields:
+                      - uesio/cms.name
+                      - uesio/crm.description
+              content:
+                - uesio/io.table:
+                    uesio.variant: uesio/appkit.main
+                    selectable: true
+                    rowactions:
+                      - icon: visibility
+                        text: View
+                        type: DEFAULT
+                        uesio.display:
+                          - type: recordIsNotNew
+                        signals:
+                          - signal: route/NAVIGATE_TO_ASSIGNMENT
+                            collection: uesio/cms.track
+                            viewtype: detail
+                            recordid: ${uesio/core.id}
+                    columns:
+                      - field: uesio/cms.name
+                      - field: uesio/cms.description
+                      - field: uesio/cms.slug
+                    uesio.id: trackTable
+                    wire: tracks
+                    pagesize: 10

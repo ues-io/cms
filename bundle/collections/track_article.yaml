@@ -1,0 +1,8 @@
+name: track_article
+label: Track Article
+public: true
+pluralLabel: Track Articles
+uniqueKey:
+  - track
+  - article
+nameField: uesio/core.uniquekey

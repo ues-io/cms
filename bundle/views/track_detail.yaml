@@ -1,0 +1,199 @@
+name: track_detail
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    track:
+      collection: uesio/cms.track
+      fields:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.slug:
+        uesio/core.updatedby:
+        uesio/core.updatedat:
+        uesio/core.createdby:
+        uesio/core.createdat:
+        uesio/core.owner:
+      conditions:
+        - field: uesio/core.id
+          valueSource: PARAM
+          param: recordid
+    articles:
+      collection: uesio/cms.track_article
+      fields:
+        uesio/cms.track:
+        uesio/cms.article:
+          fields:
+            uesio/cms.name:
+            uesio/cms.description:
+        uesio/cms.order:
+      conditions:
+        - field: uesio/cms.track
+          valueSource: PARAM
+          param: recordid
+      order:
+        - field: uesio/cms.order
+          desc: false
+    newarticle:
+      fields:
+        uesio/cms.track:
+        uesio/cms.article:
+        uesio/cms.order:
+      init:
+        query: false
+        create: true
+      collection: uesio/cms.track_article
+      defaults:
+        - field: uesio/cms.track
+          valueSource: PARAM
+          param: recordid
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.item:
+                      wire: track
+                      components:
+                        - uesio/io.group:
+                            uesio.variant: uesio/appkit.breadcrumbs
+                            components:
+                              - uesio/appkit.icontile:
+                                  tileVariant: uesio/appkit.breadcrumb
+                                  title: $Collection{pluralLabel}
+                                  icon: library_books
+                                  signals:
+                                    - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                      collection: uesio/cms.track
+                                      viewtype: list
+                              - uesio/appkit.icontile:
+                                  tileVariant: uesio/appkit.breadcrumb
+                                  avatarVariant: uesio/appkit.breadcrumb
+                                  title: ${uesio/cms.name}
+        content:
+          - uesio/io.box:
+              uesio.display:
+                - type: paramIsSet
+                  param: recordid
+              components:
+                - uesio/appkit.layout_detail_split:
+                    main:
+                      - uesio/appkit.form_detail:
+                          wire: track
+                          avataricon: library_books
+                          content:
+                            - uesio/io.box:
+                                uesio.variant: uesio/appkit.primarysection
+                                components:
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.name
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.description
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.slug
+                    left:
+                      - uesio/io.tabs:
+                          uesio.variant: uesio/appkit.main
+                          tabs:
+                            - id: articles
+                              label: Articles
+                              components:
+                                - uesio/io.scrollpanel:
+                                    uesio.variant: uesio/appkit.sidebar
+                                    content:
+                                      - uesio/io.deck:
+                                          wire: articles
+                                          mode: READ
+                                          id: articles
+                                          uesio.variant: uesio/appkit.tiles
+                                          components:
+                                            - uesio/io.tile:
+                                                uesio.variant: uesio/appkit.item
+                                                signals:
+                                                  - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                                    collection: uesio/cms.article
+                                                    viewtype: detail
+                                                    recordid: ${uesio/cms.article->uesio/core.id}
+                                                content:
+                                                  - uesio/io.titlebar:
+                                                      uesio.variant: uesio/appkit.item
+                                                      title: ${article->name}
+                                                      subtitle: ${article->description}
+                                                      actions:
+                                                        - uesio/io.menubutton:
+                                                            icon: more_horiz
+                                                            buttonVariant: uesio/appkit.itemaction
+                                                            items:
+                                                              - id: up
+                                                                label: Move Up
+                                                                signals:
+                                                                  - signal: wire/UPDATE_RECORD
+                                                                    wire: articles
+                                                                    field: uesio/cms.order
+                                                                    value: $Formula{getField("uesio/cms.order") - 1}
+                                                                  - signal: wire/SAVE
+                                                                  - signal: wire/LOAD
+                                                              - id: down
+                                                                label: Move Down
+                                                                signals:
+                                                                  - signal: wire/UPDATE_RECORD
+                                                                    wire: articles
+                                                                    field: uesio/cms.order
+                                                                    value: $Formula{getField("uesio/cms.order") + 1}
+                                                                  - signal: wire/SAVE
+                                                                  - signal: wire/LOAD
+                                                              - id: delete
+                                                                label: Remove Article
+                                                                signals:
+                                                                  - signal: wire/MARK_FOR_DELETE
+                                                                  - signal: wire/SAVE
+                                                avatar:
+                                                  - uesio/io.text:
+                                                      text: article
+                                                      uesio.variant: uesio/appkit.avataricon
+                                          emptyState:
+                                            - uesio/io.emptystate:
+                                                title: No Articles
+                                                subtitle: You haven't associated any articles with this track yet.
+                                                icon: article
+                                    footer:
+                                      - uesio/io.item:
+                                          wire: newarticle
+                                          mode: EDIT
+                                          components:
+                                            - uesio/io.box:
+                                                components:
+                                                  - uesio/io.field:
+                                                      labelPosition: none
+                                                      fieldId: article
+                                            - uesio/io.group:
+                                                uesio.styleTokens:
+                                                  root:
+                                                    - justify-right
+                                                components:
+                                                  - uesio/io.button:
+                                                      text: Add
+                                                      uesio.variant: uesio/appkit.secondary_small
+                                                      signals:
+                                                        - signal: wire/SAVE
+                                                        - signal: wire/RESET
+                                                        - signal: wire/LOAD
+                                                          wires:
+                                                            - articles
+          - uesio/io.box:
+              uesio.variant: uesio/io.section
+              uesio.display:
+                - type: paramIsNotSet
+                  param: recordid
+              components:
+                - uesio/io.text:
+                    text: Select a record
+  params:
+    recordid:
+      type: RECORD
+      required: true
+      collection: uesio/cms.track

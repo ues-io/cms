@@ -1,0 +1,63 @@
+name: series_list
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    series:
+      collection: uesio/cms.series
+      fields:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.slug:
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              slots:
+                crumbs:
+                  - uesio/io.group:
+                      uesio.variant: uesio/appkit.breadcrumbs
+                      components:
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: Series
+                            icon: route
+        content:
+          - uesio/appkit.form_list:
+              wire: series
+              avataricon: route
+              linkedComponentType: uesio/io.table
+              linkedComponentId: seriesTable
+              filters:
+                - uesio/io.searchbox:
+                    uesio.variant: uesio/appkit.main
+                    wire: series
+                    placeholder: Search Series
+                    searchFields:
+                      - uesio/cms.name
+                      - uesio/crm.description
+              content:
+                - uesio/io.table:
+                    uesio.variant: uesio/appkit.main
+                    selectable: true
+                    rowactions:
+                      - icon: visibility
+                        text: View
+                        type: DEFAULT
+                        uesio.display:
+                          - type: recordIsNotNew
+                        signals:
+                          - signal: route/NAVIGATE_TO_ASSIGNMENT
+                            collection: uesio/cms.series
+                            viewtype: detail
+                            recordid: ${uesio/core.id}
+                    columns:
+                      - field: uesio/cms.name
+                      - field: uesio/cms.description
+                      - field: uesio/cms.slug
+                    uesio.id: seriesTable
+                    wire: series
+                    pagesize: 10
