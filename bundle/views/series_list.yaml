@@ -1,15 +1,14 @@
-name: author_list
+name: series_list
 public: true
 definition:
   # Wires connect to data in collections
   wires:
-    author:
-      collection: uesio/cms.author
+    series:
+      collection: uesio/cms.series
       fields:
-        uesio/cms.firstname:
-        uesio/cms.lastname:
-        uesio/cms.external_id:
-        uesio/cms.title:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.slug:
   # Components determine the layout and composition of your view
   components:
     - uesio/io.viewlayout:
@@ -24,19 +23,22 @@ definition:
                       components:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
-                            title: $Collection{author:pluralLabel}
-                            icon: person
+                            title: Series
+                            icon: route
         content:
           - uesio/appkit.form_list:
-              wire: author
-              avataricon: person
+              wire: series
+              avataricon: route
               linkedComponentType: uesio/io.table
-              linkedComponentId: authorTable
+              linkedComponentId: seriesTable
               filters:
                 - uesio/io.searchbox:
                     uesio.variant: uesio/appkit.main
-                    wire: author
-                    placeholder: Search $Collection{author:pluralLabel}
+                    wire: series
+                    placeholder: Search Series
+                    searchFields:
+                      - uesio/cms.name
+                      - uesio/crm.description
               content:
                 - uesio/io.table:
                     uesio.variant: uesio/appkit.main
@@ -49,14 +51,13 @@ definition:
                           - type: recordIsNotNew
                         signals:
                           - signal: route/NAVIGATE_TO_ASSIGNMENT
+                            collection: uesio/cms.series
                             viewtype: detail
                             recordid: ${uesio/core.id}
-                            collection: uesio/cms.author
                     columns:
-                      - field: uesio/cms.firstname
-                      - field: uesio/cms.lastname
-                      - field: uesio/cms.external_id
-                      - field: uesio/cms.title
-                    uesio.id: authorTable
-                    wire: author
+                      - field: uesio/cms.name
+                      - field: uesio/cms.description
+                      - field: uesio/cms.slug
+                    uesio.id: seriesTable
+                    wire: series
                     pagesize: 10

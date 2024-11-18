@@ -1,0 +1,6 @@
+name: track_new
+public: true
+path: track/new
+view: track_new
+theme: uesio/core.default
+title: New Track

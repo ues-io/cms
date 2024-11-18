@@ -1,0 +1,4 @@
+name: track_list
+public: true
+path: track/list
+view: track_list

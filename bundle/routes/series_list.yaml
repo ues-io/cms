@@ -1,0 +1,4 @@
+name: series_list
+public: true
+path: series/list
+view: series_list

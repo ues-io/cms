@@ -37,6 +37,42 @@ definition:
                               viewtype: createnew
                 - uesio/appkit.icontile:
                     tileVariant: uesio/io.nav
+                    title: Tracks
+                    icon: library_books
+                    selectedid: $Prop{selected}
+                    signals:
+                      - signal: route/NAVIGATE_TO_ASSIGNMENT
+                        collection: uesio/cms.track
+                        viewtype: list
+                    actions:
+                      - uesio/io.button:
+                          uesio.variant: uesio/appkit.navicon_small
+                          icon: add
+                          signals:
+                            - signal: route/NAVIGATE_TO_ASSIGNMENT
+                              preventLinkTag: true
+                              collection: uesio/cms.track
+                              viewtype: createnew
+                - uesio/appkit.icontile:
+                    tileVariant: uesio/io.nav
+                    title: Series
+                    icon: route
+                    selectedid: $Prop{selected}
+                    signals:
+                      - signal: route/NAVIGATE_TO_ASSIGNMENT
+                        collection: uesio/cms.series
+                        viewtype: list
+                    actions:
+                      - uesio/io.button:
+                          uesio.variant: uesio/appkit.navicon_small
+                          icon: add
+                          signals:
+                            - signal: route/NAVIGATE_TO_ASSIGNMENT
+                              preventLinkTag: true
+                              collection: uesio/cms.series
+                              viewtype: createnew
+                - uesio/appkit.icontile:
+                    tileVariant: uesio/io.nav
                     title: Authors
                     icon: person
                     selectedid: $Prop{selected}

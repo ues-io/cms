@@ -1,0 +1,8 @@
+name: series_track
+label: Series Track
+public: true
+pluralLabel: Series Tracks
+uniqueKey:
+  - series
+  - track
+nameField: uesio/core.uniquekey

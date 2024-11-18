@@ -1,0 +1,7 @@
+name: series
+label: Series
+public: true
+pluralLabel: Series
+uniqueKey:
+  - slug
+nameField: name

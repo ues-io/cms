@@ -1,15 +1,13 @@
-name: author_new
+name: track_new
 public: true
 definition:
   # Wires connect to data in collections
   wires:
-    author:
-      collection: uesio/cms.author
+    track:
+      collection: uesio/cms.track
       fields:
-        uesio/cms.firstname:
-        uesio/cms.lastname:
-        uesio/cms.external_id:
-        uesio/cms.title:
+        uesio/cms.name:
+        uesio/cms.description:
         uesio/core.updatedby:
         uesio/core.updatedat:
         uesio/core.createdby:
@@ -32,11 +30,11 @@ definition:
                       components:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
-                            title: $Collection{author:pluralLabel}
-                            icon: person
+                            title: $Collection{track:pluralLabel}
+                            icon: library_books
                             signals:
                               - signal: route/NAVIGATE_TO_ASSIGNMENT
-                                collection: uesio/cms.author
+                                collection: uesio/cms.article
                                 viewtype: list
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
@@ -45,16 +43,14 @@ definition:
           - uesio/appkit.layout_detail_split:
               main:
                 - uesio/appkit.form_new:
-                    wire: author
-                    avataricon: person
+                    wire: track
+                    avataricon: library_books
                     content:
                       - uesio/io.box:
                           uesio.variant: uesio/appkit.primarysection
                           components:
                             - uesio/io.field:
-                                fieldId: uesio/cms.firstname
+                                fieldId: uesio/cms.name
                             - uesio/io.field:
-                                fieldId: uesio/cms.lastname
-                            - uesio/io.field:
-                                fieldId: uesio/cms.title
+                                fieldId: uesio/cms.description
               left:

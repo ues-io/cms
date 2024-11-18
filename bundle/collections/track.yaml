@@ -1,0 +1,7 @@
+name: track
+label: Track
+public: true
+pluralLabel: Tracks
+uniqueKey:
+  - slug
+nameField: name

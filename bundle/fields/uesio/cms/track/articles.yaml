@@ -1,0 +1,7 @@
+name: articles
+type: REFERENCEGROUP
+label: Articles
+referenceGroup:
+  collection: track_article
+  field: track
+  onDelete: CASCADE

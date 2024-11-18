@@ -5,15 +5,22 @@ extends: uesio/io.default
 definition:
   uesio.styleTokens:
     root:
-      - my-4
+      - mt-3
       - mb-6
       - flex-col
     content:
-      - mb-2
+      - mb-3
+      - gap-y-1.5
     title:
-      - text-5xl
+      - sm:text-5xl
+      - text-4xl
       - font-bold
+      - sm:leading-tight
+      - leading-tight
     subtitle:
-      - text-xl
+      - sm:text-xl
+      - text-lg
       - font-light
       - text-black/70
+      - sm:leading-tight
+      - leading-tight

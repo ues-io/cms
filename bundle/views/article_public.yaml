@@ -11,8 +11,11 @@ definition:
                 - bg-white
     - name: left
       defaultContent:
-        - uesio/io.box:
-            components:
+        - uesio/core.view:
+            uesio.id: tracknav
+            view: uesio/cms.track_nav
+            params:
+              selected: ${slug}
       providesContexts:
         - type: WIRE
         - type: RECORD
@@ -63,6 +66,9 @@ definition:
                       - uesio/sitekit.section:
                           content:
                             - uesio/io.group:
+                                uesio.styleTokens:
+                                  root:
+                                    - auto-cols-min
                                 components:
                                   - uesio/io.button:
                                       uesio.styleTokens:

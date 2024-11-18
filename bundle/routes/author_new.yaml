@@ -1,6 +1,6 @@
 name: author_new
 public: true
-path: author/new/{recordid}
+path: author/new
 view: author_new
 theme: uesio/core.default
 title: New Author

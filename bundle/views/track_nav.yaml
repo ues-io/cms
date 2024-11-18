@@ -1,0 +1,45 @@
+name: track_nav
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    tracks:
+      collection: uesio/cms.track
+      fields:
+        uesio/cms.name:
+        uesio/cms.description:
+        uesio/cms.slug:
+    articles:
+      collection: uesio/cms.track_article
+      fields:
+        uesio/cms.track:
+        uesio/cms.article:
+          fields:
+            uesio/cms.name:
+            uesio/cms.slug:
+      order:
+        - field: uesio/cms.order
+          desc: false
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.box:
+        components:
+          - uesio/io.list:
+              wire: tracks
+              components:
+                - uesio/cms.navsection:
+                    title: ${name}
+                    items:
+                      - uesio/io.list:
+                          recordDisplay:
+                            - type: mergeValue
+                              sourceValue: ${uesio/cms.track->uesio/core.id}
+                              value: ${tracks:uesio/core.id}
+                          wire: articles
+                          components:
+                            - uesio/cms.navitem:
+                                title: ${article->name}
+                                uesio.id: ${article->slug}
+                                path: public/articles/${article->slug}
+                                namespace: uesio/cms
+                                selectedid: $Param{selected}

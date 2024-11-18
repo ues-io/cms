@@ -1,0 +1,5 @@
+name: slugify
+public: true
+collection: track
+type: BEFORESAVE
+dialect: TYPESCRIPT

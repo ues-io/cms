@@ -1,6 +1,6 @@
 name: article_new
 public: true
-path: article/new/{recordid}
+path: article/new
 view: article_new
 theme: uesio/core.default
 title: New Article

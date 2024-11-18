@@ -1,0 +1,7 @@
+name: tracks
+type: REFERENCEGROUP
+label: Tracks
+referenceGroup:
+  collection: series_track
+  field: series
+  onDelete: CASCADE

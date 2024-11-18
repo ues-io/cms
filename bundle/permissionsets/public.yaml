@@ -28,6 +28,38 @@ collections:
     modifyall: false
     viewall: false
     fields: {}
+  uesio/core.track:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/core.track_article:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/core.series:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/core.series_track:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
 routes:
   uesio/cms.article_public: true
 files: {}
