@@ -9,7 +9,7 @@ function manage_ordering(bot: AfterSaveBotApi) {
 	bot.inserts.get().forEach((change) => {
 		const currentOrder = change.get("uesio/cms.order") as number
 		const currentTrack = change.get(
-			"uesio/cms.track->uesio/core.id"
+			"uesio/cms.track->uesio/core.id",
 		) as string
 		const currentId = change.get("uesio/core.id") as string
 
@@ -26,7 +26,7 @@ function manage_ordering(bot: AfterSaveBotApi) {
 	bot.updates.get().forEach((change) => {
 		const currentOrder = change.getOld("uesio/cms.order") as number
 		const currentTrack = change.get(
-			"uesio/cms.track->uesio/core.id"
+			"uesio/cms.track->uesio/core.id",
 		) as string
 		const currentId = change.get("uesio/core.id") as string
 
@@ -47,7 +47,7 @@ function manage_ordering(bot: AfterSaveBotApi) {
 
 	bot.deletes.get().forEach((change) => {
 		const currentTrack = change.getOld(
-			"uesio/cms.track->uesio/core.id"
+			"uesio/cms.track->uesio/core.id",
 		) as string
 		const trackToProcess = tracksToProcess[currentTrack]
 

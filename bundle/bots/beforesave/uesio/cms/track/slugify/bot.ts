@@ -1,7 +1,8 @@
 import { BeforeSaveBotApi } from "@uesio/bots"
 
 function slugify(bot: BeforeSaveBotApi) {
-	;[...bot.inserts.get(), ...bot.updates.get()].forEach((r) => {
+	const changes = [...bot.inserts.get(), ...bot.updates.get()]
+	changes.forEach((r) => {
 		// If no slug, slugify the title
 		const slug = r.get("uesio/cms.slug") as string
 		if (!slug) {
@@ -12,14 +13,14 @@ function slugify(bot: BeforeSaveBotApi) {
 				title
 					.toLowerCase()
 					.replace(/ /g, "-")
-					.replace(/[^\w-]+/g, "")
+					.replace(/[^\w-]+/g, ""),
 			)
 		}
 
 		// Remove whitespaces at start and end + check structure
 		const sanitizedSlug = slug.replace(/^\s\s*/, "").replace(/\s\s*$/, "")
 		const isValidSlug = /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/.test(
-			sanitizedSlug
+			sanitizedSlug,
 		)
 		if (!isValidSlug) throw new Error("Invalid slug: " + slug)
 
