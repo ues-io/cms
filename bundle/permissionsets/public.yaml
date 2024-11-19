@@ -3,6 +3,8 @@ public: true
 named: {}
 views:
   uesio/cms.article_public: true
+  uesio/cms.series_nav: true
+  uesio/cms.track_nav: true
 collections:
   uesio/cms.article:
     read: true
