@@ -22,7 +22,7 @@ collections:
     modifyall: false
     viewall: false
     fields: {}
-  uesio/core.series:
+  uesio/cms.series:
     read: true
     create: false
     edit: false
@@ -30,7 +30,7 @@ collections:
     modifyall: false
     viewall: false
     fields: {}
-  uesio/core.series_track:
+  uesio/cms.series_track:
     read: true
     create: false
     edit: false
@@ -38,7 +38,7 @@ collections:
     modifyall: false
     viewall: false
     fields: {}
-  uesio/core.track:
+  uesio/cms.track:
     read: true
     create: false
     edit: false
@@ -46,7 +46,7 @@ collections:
     modifyall: false
     viewall: false
     fields: {}
-  uesio/core.track_article:
+  uesio/cms.track_article:
     read: true
     create: false
     edit: false
