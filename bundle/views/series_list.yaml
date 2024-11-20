@@ -9,6 +9,7 @@ definition:
         uesio/cms.name:
         uesio/cms.description:
         uesio/cms.slug:
+        uesio/cms.published:
   # Components determine the layout and composition of your view
   components:
     - uesio/io.viewlayout:
@@ -38,7 +39,7 @@ definition:
                     placeholder: Search Series
                     searchFields:
                       - uesio/cms.name
-                      - uesio/crm.description
+                      - uesio/cms.description
               content:
                 - uesio/io.table:
                     uesio.variant: uesio/appkit.main
@@ -58,6 +59,7 @@ definition:
                       - field: uesio/cms.name
                       - field: uesio/cms.description
                       - field: uesio/cms.slug
+                      - field: uesio/cms.published
                     uesio.id: seriesTable
                     wire: series
                     pagesize: 10

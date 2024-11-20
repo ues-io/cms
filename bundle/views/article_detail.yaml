@@ -11,6 +11,7 @@ definition:
         uesio/cms.description:
         uesio/cms.slug:
         uesio/cms.author:
+        uesio/cms.published:
         uesio/core.owner:
         uesio/core.updatedat:
         uesio/core.updatedby:
@@ -180,6 +181,8 @@ definition:
                                 fieldId: uesio/cms.slug
                             - uesio/io.field:
                                 fieldId: uesio/cms.author
+                            - uesio/io.field:
+                                fieldId: uesio/cms.published
                       - uesio/io.field:
                           fieldId: uesio/cms.description
                 - uesio/io.box:

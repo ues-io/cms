@@ -9,6 +9,7 @@ definition:
         uesio/cms.name:
         uesio/cms.description:
         uesio/cms.slug:
+        uesio/cms.published:
         uesio/core.updatedby:
         uesio/core.updatedat:
         uesio/core.createdby:
@@ -95,6 +96,8 @@ definition:
                                       fieldId: uesio/cms.description
                                   - uesio/io.field:
                                       fieldId: uesio/cms.slug
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.published
                     left:
                       - uesio/io.tabs:
                           uesio.variant: uesio/appkit.main

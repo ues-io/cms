@@ -16,6 +16,10 @@ definition:
         - field: uesio/cms.series->uesio/cms.slug
           valueSource: PARAM
           param: slug
+        - field: uesio/cms.series->uesio/cms.published
+          value: true
+        - field: uesio/cms.track->uesio/cms.published
+          value: true
       order:
         - field: uesio/cms.order
           desc: false
@@ -32,6 +36,8 @@ definition:
           valueSource: LOOKUP
           lookupField: uesio/cms.track->uesio/core.id
           lookupWire: tracks
+        - field: uesio/cms.article->uesio/cms.published
+          value: true
       order:
         - field: uesio/cms.order
           desc: false
@@ -55,10 +61,18 @@ definition:
                             - uesio/cms.navitem:
                                 title: ${article->name}
                                 uesio.id: ${article->slug}
-                                path: public/articles/${article->slug}
-                                namespace: uesio/cms
+                                path: $Param{prefix}/${article->slug}
+                                namespace: $Param{namespace}
                                 selectedid: $Param{selected}
   params:
     slug:
       type: TEXT
       required: true
+    prefix:
+      type: TEXT
+      defaultValue: "/public/articles"
+    namespace:
+      type: TEXT
+      defaultValue: "uesio/cms"
+    selected:
+      type: TEXT

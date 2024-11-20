@@ -27,6 +27,7 @@ definition:
         uesio/cms.slug:
         uesio/cms.name:
         uesio/cms.description:
+        uesio/core.updatedat:
         uesio/cms.author:
           fields:
             uesio/cms.firstname:

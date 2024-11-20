@@ -9,6 +9,9 @@ definition:
         uesio/cms.name:
         uesio/cms.description:
         uesio/cms.slug:
+      conditions:
+        - field: uesio/cms.published
+          value: true
     articles:
       collection: uesio/cms.track_article
       fields:
@@ -17,6 +20,13 @@ definition:
           fields:
             uesio/cms.name:
             uesio/cms.slug:
+      conditions:
+        - field: uesio/cms.track
+          valueSource: LOOKUP
+          lookupField: uesio/core.id
+          lookupWire: tracks
+        - field: uesio/cms.article->uesio/cms.published
+          value: true
       order:
         - field: uesio/cms.order
           desc: false
