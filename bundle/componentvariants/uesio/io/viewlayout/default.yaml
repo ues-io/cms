@@ -27,7 +27,7 @@ definition:
       - md:row-start-3
       - lg:p-0
       - lg:pt-8
-      - lg:pb-64
+      - lg:pb-80
       - md:p-10
       - p-6
     left:

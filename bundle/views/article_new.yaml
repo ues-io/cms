@@ -9,6 +9,7 @@ definition:
         uesio/cms.name:
         uesio/cms.description:
         uesio/cms.author:
+        uesio/cms.published:
         uesio/core.updatedby:
         uesio/core.updatedat:
         uesio/core.createdby:
@@ -56,4 +57,6 @@ definition:
                                 fieldId: uesio/cms.description
                             - uesio/io.field:
                                 fieldId: uesio/cms.author
+                            - uesio/io.field:
+                                fieldId: uesio/cms.published
               left:
