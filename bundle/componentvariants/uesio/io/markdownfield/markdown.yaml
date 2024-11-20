@@ -40,7 +40,6 @@ definition:
       - text-sm
     ol:
       - list-decimal
-      - list-inside
       - font-light
       - mb-6
     ul:
