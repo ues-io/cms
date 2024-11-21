@@ -18,10 +18,11 @@ definition:
               title: CMS Data
               content:
                 - uesio/appkit.icontile:
+                    uesio.id: articles
                     tileVariant: uesio/io.nav
                     title: Articles
                     icon: article
-                    selectedid: $Prop{selected}
+                    selectedid: $Param{selected}
                     signals:
                       - signal: route/NAVIGATE_TO_ASSIGNMENT
                         collection: uesio/cms.article
@@ -36,10 +37,11 @@ definition:
                               collection: uesio/cms.article
                               viewtype: createnew
                 - uesio/appkit.icontile:
+                    uesio.id: tracks
                     tileVariant: uesio/io.nav
                     title: Tracks
                     icon: library_books
-                    selectedid: $Prop{selected}
+                    selectedid: $Param{selected}
                     signals:
                       - signal: route/NAVIGATE_TO_ASSIGNMENT
                         collection: uesio/cms.track
@@ -54,10 +56,11 @@ definition:
                               collection: uesio/cms.track
                               viewtype: createnew
                 - uesio/appkit.icontile:
+                    uesio.id: series
                     tileVariant: uesio/io.nav
                     title: Series
                     icon: route
-                    selectedid: $Prop{selected}
+                    selectedid: $Param{selected}
                     signals:
                       - signal: route/NAVIGATE_TO_ASSIGNMENT
                         collection: uesio/cms.series
@@ -72,10 +75,11 @@ definition:
                               collection: uesio/cms.series
                               viewtype: createnew
                 - uesio/appkit.icontile:
+                    uesio.id: authors
                     tileVariant: uesio/io.nav
                     title: Authors
                     icon: person
-                    selectedid: $Prop{selected}
+                    selectedid: $Param{selected}
                     signals:
                       - signal: route/NAVIGATE_TO_ASSIGNMENT
                         collection: uesio/cms.author
