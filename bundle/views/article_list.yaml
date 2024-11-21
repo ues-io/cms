@@ -18,6 +18,8 @@ definition:
         left:
           - uesio/core.view:
               view: uesio/cms.admin_nav
+              params:
+                selected: articles
               slots:
                 crumbs:
                   - uesio/io.group:
