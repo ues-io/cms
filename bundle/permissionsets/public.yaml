@@ -22,6 +22,14 @@ collections:
     modifyall: false
     viewall: false
     fields: {}
+  uesio/cms.category:
+    read: true
+    create: false
+    edit: false
+    delete: false
+    modifyall: false
+    viewall: false
+    fields: {}
   uesio/cms.series:
     read: true
     create: false

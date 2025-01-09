@@ -1,0 +1,5 @@
+name: category
+label: Category
+type: REFERENCE
+reference:
+  collection: category

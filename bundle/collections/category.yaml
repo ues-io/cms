@@ -1,0 +1,7 @@
+name: category
+label: Category
+public: true
+pluralLabel: Categories
+uniqueKey:
+  - name
+nameField: name

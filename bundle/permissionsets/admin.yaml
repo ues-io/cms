@@ -1,0 +1,60 @@
+name: admin
+public: true
+named: {}
+views:
+  uesio/cms.admin_nav: true
+  uesio/cms.article_detail: true
+  uesio/cms.article_list: true
+  uesio/cms.article_new: true
+  uesio/cms.article_public: true
+  uesio/cms.author_detail: true
+  uesio/cms.author_list: true
+  uesio/cms.author_new: true
+  uesio/cms.category_detail: true
+  uesio/cms.category_list: true
+  uesio/cms.category_new: true
+  uesio/cms.series_detail: true
+  uesio/cms.series_list: true
+  uesio/cms.series_nav: true
+  uesio/cms.series_new: true
+  uesio/cms.track_detail: true
+  uesio/cms.track_list: true
+  uesio/cms.track_nav: true
+  uesio/cms.track_new: true
+collections:
+  uesio/cms.article: true
+  uesio/cms.author: true
+  uesio/cms.category: true
+  uesio/cms.series: true
+  uesio/cms.series_track: true
+  uesio/cms.track: true
+  uesio/cms.track_article: true
+  uesio/core.userfile: true
+routes:
+  uesio/cms.article_detail: true
+  uesio/cms.article_list: true
+  uesio/cms.article_new: true
+  uesio/cms.article_public: true
+  uesio/cms.author_detail: true
+  uesio/cms.author_list: true
+  uesio/cms.author_new: true
+  uesio/cms.category_detail: true
+  uesio/cms.category_list: true
+  uesio/cms.category_new: true
+  uesio/cms.series_detail: true
+  uesio/cms.series_list: true
+  uesio/cms.series_new: true
+  uesio/cms.track_detail: true
+  uesio/cms.track_list: true
+  uesio/cms.track_new: true
+files: {}
+bots: {}
+integrationActions: {}
+allowallbots: false
+allowallcollections: false
+allowallviews: false
+allowallroutes: false
+allowallfiles: true
+allowallintegrationactions: false
+modifyallrecords: false
+viewallrecords: false

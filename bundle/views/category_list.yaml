@@ -1,0 +1,60 @@
+name: category_list
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    category:
+      collection: uesio/cms.category
+      fields:
+        uesio/cms.name:
+        uesio/cms.label:
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              params:
+                selected: categories
+              slots:
+                crumbs:
+                  - uesio/io.group:
+                      uesio.variant: uesio/appkit.breadcrumbs
+                      components:
+                        - uesio/appkit.icontile:
+                            tileVariant: uesio/appkit.breadcrumb
+                            title: $Collection{category:pluralLabel}
+                            icon: label
+        content:
+          - uesio/appkit.form_list:
+              wire: category
+              avataricon: label
+              linkedComponentType: uesio/io.table
+              linkedComponentId: categoryTable
+              filters:
+                - uesio/io.searchbox:
+                    uesio.variant: uesio/appkit.main
+                    wire: category
+                    placeholder: Search $Collection{category:pluralLabel}
+              content:
+                - uesio/io.table:
+                    uesio.variant: uesio/appkit.main
+                    selectable: true
+                    rowactions:
+                      - icon: visibility
+                        text: View
+                        type: DEFAULT
+                        uesio.display:
+                          - type: recordIsNotNew
+                        signals:
+                          - signal: route/NAVIGATE_TO_ASSIGNMENT
+                            viewtype: detail
+                            recordid: ${uesio/core.id}
+                            collection: uesio/cms.category
+                    columns:
+                      - field: uesio/cms.name
+                      - field: uesio/cms.label
+                    uesio.id: categoryTable
+                    wire: category
+                    pagesize: 10

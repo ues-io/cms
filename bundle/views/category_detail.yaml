@@ -1,0 +1,81 @@
+name: category_detail
+public: true
+definition:
+  # Wires connect to data in collections
+  wires:
+    category:
+      collection: uesio/cms.category
+      fields:
+        uesio/cms.name:
+        uesio/cms.label:
+        uesio/core.updatedby:
+        uesio/core.updatedat:
+        uesio/core.createdby:
+        uesio/core.createdat:
+        uesio/core.owner:
+      conditions:
+        - field: uesio/core.id
+          valueSource: PARAM
+          param: recordid
+  # Components determine the layout and composition of your view
+  components:
+    - uesio/io.viewlayout:
+        uesio.variant: uesio/appkit.default
+        left:
+          - uesio/core.view:
+              view: uesio/cms.admin_nav
+              params:
+                selected: categories
+              slots:
+                crumbs:
+                  - uesio/io.item:
+                      wire: category
+                      components:
+                        - uesio/io.group:
+                            uesio.variant: uesio/appkit.breadcrumbs
+                            components:
+                              - uesio/appkit.icontile:
+                                  tileVariant: uesio/appkit.breadcrumb
+                                  title: $Collection{pluralLabel}
+                                  icon: label
+                                  signals:
+                                    - signal: route/NAVIGATE_TO_ASSIGNMENT
+                                      collection: uesio/cms.category
+                                      viewtype: list
+                              - uesio/appkit.icontile:
+                                  tileVariant: uesio/appkit.breadcrumb
+                                  avatarVariant: uesio/appkit.breadcrumb
+                                  title: ${uesio/cms.label}
+        content:
+          - uesio/io.box:
+              uesio.display:
+                - type: paramIsSet
+                  param: recordid
+              components:
+                - uesio/appkit.layout_detail_split:
+                    main:
+                      - uesio/appkit.form_detail:
+                          wire: category
+                          avataricon: label
+                          content:
+                            - uesio/io.box:
+                                uesio.variant: uesio/appkit.primarysection
+                                components:
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.name
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.label
+                    left:
+          - uesio/io.box:
+              uesio.variant: uesio/io.section
+              uesio.display:
+                - type: paramIsNotSet
+                  param: recordid
+              components:
+                - uesio/io.text:
+                    text: Select a record
+  params:
+    recordid:
+      type: RECORD
+      required: true
+      collection: uesio/cms.category

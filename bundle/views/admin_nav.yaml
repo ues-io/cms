@@ -93,6 +93,25 @@ definition:
                               preventLinkTag: true
                               collection: uesio/cms.author
                               viewtype: createnew
+                - uesio/appkit.icontile:
+                    uesio.id: categories
+                    tileVariant: uesio/io.nav
+                    title: Categories
+                    icon: label
+                    selectedid: $Param{selected}
+                    signals:
+                      - signal: route/NAVIGATE_TO_ASSIGNMENT
+                        collection: uesio/cms.category
+                        viewtype: list
+                    actions:
+                      - uesio/io.button:
+                          uesio.variant: uesio/appkit.navicon_small
+                          icon: add
+                          signals:
+                            - signal: route/NAVIGATE_TO_ASSIGNMENT
+                              preventLinkTag: true
+                              collection: uesio/cms.category
+                              viewtype: createnew
           - $Slot{extra}
         footer:
           - uesio/io.titlebar:
