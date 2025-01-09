@@ -1,16 +1,13 @@
-name: article_new
+name: category_new
 public: true
 definition:
   # Wires connect to data in collections
   wires:
-    article:
-      collection: uesio/cms.article
+    category:
+      collection: uesio/cms.category
       fields:
         uesio/cms.name:
-        uesio/cms.description:
-        uesio/cms.author:
-        uesio/cms.category:
-        uesio/cms.published:
+        uesio/cms.label:
         uesio/core.updatedby:
         uesio/core.updatedat:
         uesio/core.createdby:
@@ -27,7 +24,7 @@ definition:
           - uesio/core.view:
               view: uesio/cms.admin_nav
               params:
-                selected: articles
+                selected: categories
               slots:
                 crumbs:
                   - uesio/io.group:
@@ -35,11 +32,11 @@ definition:
                       components:
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
-                            title: $Collection{article:pluralLabel}
-                            icon: article
+                            title: $Collection{category:pluralLabel}
+                            icon: label
                             signals:
                               - signal: route/NAVIGATE_TO_ASSIGNMENT
-                                collection: uesio/cms.article
+                                collection: uesio/cms.category
                                 viewtype: list
                         - uesio/appkit.icontile:
                             tileVariant: uesio/appkit.breadcrumb
@@ -48,8 +45,8 @@ definition:
           - uesio/appkit.layout_detail_split:
               main:
                 - uesio/appkit.form_new:
-                    wire: article
-                    avataricon: person
+                    wire: category
+                    avataricon: label
                     content:
                       - uesio/io.box:
                           uesio.variant: uesio/appkit.primarysection
@@ -57,11 +54,5 @@ definition:
                             - uesio/io.field:
                                 fieldId: uesio/cms.name
                             - uesio/io.field:
-                                fieldId: uesio/cms.description
-                            - uesio/io.field:
-                                fieldId: uesio/cms.author
-                            - uesio/io.field:
-                                fieldId: uesio/cms.category
-                            - uesio/io.field:
-                                fieldId: uesio/cms.published
+                                fieldId: uesio/cms.label
               left:

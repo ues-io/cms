@@ -12,6 +12,8 @@ definition:
         uesio/cms.slug:
         uesio/cms.author:
         uesio/cms.published:
+        uesio/cms.hero_image:
+        uesio/cms.category:
         uesio/core.owner:
         uesio/core.updatedat:
         uesio/core.updatedby:
@@ -185,8 +187,13 @@ definition:
                                 fieldId: uesio/cms.author
                             - uesio/io.field:
                                 fieldId: uesio/cms.published
+                            - uesio/io.field:
+                                fieldId: uesio/cms.hero_image
+                            - uesio/io.field:
+                                fieldId: uesio/cms.category
                       - uesio/io.field:
                           fieldId: uesio/cms.description
+
                 - uesio/io.box:
                     uesio.variant: uesio/appkit.section
                     components:

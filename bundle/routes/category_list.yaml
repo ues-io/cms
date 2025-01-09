@@ -1,0 +1,4 @@
+name: category_list
+public: true
+path: category/list
+view: category_list

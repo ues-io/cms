@@ -1,0 +1,6 @@
+name: category_new
+public: true
+path: category/new
+view: category_new
+theme: uesio/core.default
+title: New Category

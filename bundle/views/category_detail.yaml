@@ -1,19 +1,13 @@
-name: author_detail
+name: category_detail
 public: true
 definition:
   # Wires connect to data in collections
   wires:
-    author:
-      collection: uesio/cms.author
+    category:
+      collection: uesio/cms.category
       fields:
-        uesio/cms.firstname:
-        uesio/cms.lastname:
-        uesio/cms.description:
-        uesio/cms.external_id:
-        uesio/cms.title:
-        uesio/cms.picture:
-        uesio/cms.initials:
-        uesio/cms.fullname:
+        uesio/cms.name:
+        uesio/cms.label:
         uesio/core.updatedby:
         uesio/core.updatedat:
         uesio/core.createdby:
@@ -31,11 +25,11 @@ definition:
           - uesio/core.view:
               view: uesio/cms.admin_nav
               params:
-                selected: authors
+                selected: categories
               slots:
                 crumbs:
                   - uesio/io.item:
-                      wire: author
+                      wire: category
                       components:
                         - uesio/io.group:
                             uesio.variant: uesio/appkit.breadcrumbs
@@ -43,17 +37,15 @@ definition:
                               - uesio/appkit.icontile:
                                   tileVariant: uesio/appkit.breadcrumb
                                   title: $Collection{pluralLabel}
-                                  icon: person
+                                  icon: label
                                   signals:
                                     - signal: route/NAVIGATE_TO_ASSIGNMENT
-                                      collection: uesio/cms.author
+                                      collection: uesio/cms.category
                                       viewtype: list
                               - uesio/appkit.icontile:
                                   tileVariant: uesio/appkit.breadcrumb
                                   avatarVariant: uesio/appkit.breadcrumb
-                                  title: ${uesio/cms.fullname}
-                                  initials: ${uesio/cms.initials}
-                                  imagefield: uesio/cms.picture
+                                  title: ${uesio/cms.label}
         content:
           - uesio/io.box:
               uesio.display:
@@ -63,23 +55,16 @@ definition:
                 - uesio/appkit.layout_detail_split:
                     main:
                       - uesio/appkit.form_detail:
-                          wire: author
-                          imagefield: uesio/cms.picture
-                          initials: ${author:initials}
+                          wire: category
+                          avataricon: label
                           content:
                             - uesio/io.box:
                                 uesio.variant: uesio/appkit.primarysection
                                 components:
                                   - uesio/io.field:
-                                      fieldId: uesio/cms.firstname
+                                      fieldId: uesio/cms.name
                                   - uesio/io.field:
-                                      fieldId: uesio/cms.lastname
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.title
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.description
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.external_id
+                                      fieldId: uesio/cms.label
                     left:
           - uesio/io.box:
               uesio.variant: uesio/io.section
@@ -93,4 +78,4 @@ definition:
     recordid:
       type: RECORD
       required: true
-      collection: uesio/cms.author
+      collection: uesio/cms.category

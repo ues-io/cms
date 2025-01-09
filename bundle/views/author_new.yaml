@@ -8,6 +8,7 @@ definition:
       fields:
         uesio/cms.firstname:
         uesio/cms.lastname:
+        uesio/cms.description:
         uesio/cms.external_id:
         uesio/cms.title:
         uesio/core.updatedby:
@@ -59,4 +60,6 @@ definition:
                                 fieldId: uesio/cms.lastname
                             - uesio/io.field:
                                 fieldId: uesio/cms.title
+                            - uesio/io.field:
+                                fieldId: uesio/cms.description
               left:

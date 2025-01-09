@@ -1,0 +1,4 @@
+name: category_detail
+public: true
+path: category/detail/{recordid}
+view: category_detail
