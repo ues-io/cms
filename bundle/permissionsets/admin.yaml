@@ -30,6 +30,7 @@ collections:
   uesio/cms.track: true
   uesio/cms.track_article: true
   uesio/core.userfile: true
+  uesio/core.user: true
 routes:
   uesio/cms.article_detail: true
   uesio/cms.article_list: true

@@ -10,6 +10,8 @@ definition:
         uesio/cms.description:
         uesio/cms.slug:
         uesio/cms.published:
+        uesio/cms.icon:
+        uesio/cms.iconcolor:
         uesio/core.updatedby:
         uesio/core.updatedat:
         uesio/core.createdby:
@@ -96,10 +98,17 @@ definition:
                                       fieldId: uesio/cms.name
                                   - uesio/io.field:
                                       fieldId: uesio/cms.description
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.slug
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.published
+                                  - uesio/io.grid:
+                                      uesio.variant: uesio/appkit.two_columns
+                                      items:
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.slug
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.published
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.icon
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.iconcolor
                     left:
                       - uesio/io.tabs:
                           uesio.variant: uesio/appkit.main

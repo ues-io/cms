@@ -11,6 +11,8 @@ definition:
         uesio/cms.description:
         uesio/cms.external_id:
         uesio/cms.title:
+        uesio/cms.order:
+        uesio/cms.location:
         uesio/cms.picture:
         uesio/cms.initials:
         uesio/cms.fullname:
@@ -21,6 +23,27 @@ definition:
         uesio/core.owner:
       conditions:
         - field: uesio/core.id
+          valueSource: PARAM
+          param: recordid
+    links:
+      collection: uesio/cms.author_link
+      fields:
+        uesio/cms.type:
+        uesio/cms.link:
+      conditions:
+        - field: uesio/cms.author
+          valueSource: PARAM
+          param: recordid
+    newlink:
+      fields:
+        uesio/cms.type:
+        uesio/cms.link:
+      init:
+        query: false
+        create: true
+      collection: uesio/cms.author_link
+      defaults:
+        - field: uesio/cms.author
           valueSource: PARAM
           param: recordid
   # Components determine the layout and composition of your view
@@ -70,17 +93,98 @@ definition:
                             - uesio/io.box:
                                 uesio.variant: uesio/appkit.primarysection
                                 components:
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.firstname
-                                  - uesio/io.field:
-                                      fieldId: uesio/cms.lastname
+                                  - uesio/io.grid:
+                                      uesio.variant: uesio/appkit.two_columns
+                                      items:
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.firstname
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.lastname
                                   - uesio/io.field:
                                       fieldId: uesio/cms.title
+                                  - uesio/io.grid:
+                                      uesio.variant: uesio/appkit.two_columns
+                                      items:
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.location
+                                        - uesio/io.field:
+                                            fieldId: uesio/cms.order
                                   - uesio/io.field:
                                       fieldId: uesio/cms.description
                                   - uesio/io.field:
                                       fieldId: uesio/cms.external_id
                     left:
+                      - uesio/io.tabs:
+                          uesio.variant: uesio/appkit.main
+                          tabs:
+                            - id: links
+                              label: Links
+                              components:
+                                - uesio/io.scrollpanel:
+                                    uesio.variant: uesio/appkit.sidebar
+                                    content:
+                                      - uesio/io.deck:
+                                          wire: links
+                                          mode: READ
+                                          id: links
+                                          uesio.variant: uesio/appkit.tiles
+                                          components:
+                                            - uesio/io.tile:
+                                                uesio.variant: uesio/appkit.item
+                                                content:
+                                                  - uesio/io.titlebar:
+                                                      uesio.variant: uesio/appkit.item
+                                                      title: ${type}
+                                                      subtitle: ${link}
+                                                      actions:
+                                                        - uesio/io.menubutton:
+                                                            icon: more_horiz
+                                                            buttonVariant: uesio/appkit.itemaction
+                                                            items:
+                                                              - id: delete
+                                                                label: Remove Link
+                                                                signals:
+                                                                  - signal: wire/MARK_FOR_DELETE
+                                                                  - signal: wire/SAVE
+                                                avatar:
+                                                  - uesio/io.text:
+                                                      text: link
+                                                      uesio.variant: uesio/appkit.avataricon
+                                          emptyState:
+                                            - uesio/io.emptystate:
+                                                title: No Links
+                                                subtitle: You haven't associated any links with this author yet.
+                                                icon: link
+                                    footer:
+                                      - uesio/io.item:
+                                          wire: newlink
+                                          mode: EDIT
+                                          components:
+                                            - uesio/io.box:
+                                                uesio.styleTokens:
+                                                  root:
+                                                    - grid
+                                                    - grid-cols-[35%_1fr]
+                                                    - gap-2
+                                                components:
+                                                  - uesio/io.field:
+                                                      fieldId: type
+                                                  - uesio/io.field:
+                                                      fieldId: link
+                                            - uesio/io.group:
+                                                uesio.styleTokens:
+                                                  root:
+                                                    - justify-right
+                                                components:
+                                                  - uesio/io.button:
+                                                      text: Add
+                                                      uesio.variant: uesio/appkit.secondary_small
+                                                      signals:
+                                                        - signal: wire/SAVE
+                                                        - signal: wire/RESET
+                                                        - signal: wire/LOAD
+                                                          wires:
+                                                            - links
           - uesio/io.box:
               uesio.variant: uesio/io.section
               uesio.display:

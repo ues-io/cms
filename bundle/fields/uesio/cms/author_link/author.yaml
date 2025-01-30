@@ -1,0 +1,5 @@
+name: author
+label: Author
+type: REFERENCE
+reference:
+  collection: author

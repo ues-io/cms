@@ -1,0 +1,7 @@
+name: author_link
+label: Author Link
+public: true
+pluralLabel: Author Links
+uniqueKey:
+  - type
+nameField: type
