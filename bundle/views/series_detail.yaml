@@ -10,6 +10,7 @@ definition:
         uesio/cms.description:
         uesio/cms.slug:
         uesio/cms.published:
+        uesio/cms.hero_image:
         uesio/cms.icon:
         uesio/cms.iconcolor:
         uesio/core.updatedby:
@@ -109,6 +110,8 @@ definition:
                                             fieldId: uesio/cms.icon
                                         - uesio/io.field:
                                             fieldId: uesio/cms.iconcolor
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.hero_image
                     left:
                       - uesio/io.tabs:
                           uesio.variant: uesio/appkit.main

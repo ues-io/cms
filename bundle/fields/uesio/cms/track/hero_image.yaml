@@ -1,0 +1,5 @@
+name: hero_image
+label: Hero Image
+type: FILE
+file:
+  accept: IMAGE
