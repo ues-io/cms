@@ -74,154 +74,154 @@ definition:
                             avatarVariant: uesio/appkit.breadcrumb
                             title: ${article:uesio/cms.name}
         content:
-          - uesio/appkit.form_detail:
-              wire: article
-              avataricon: article
-              actions:
-                - uesio/io.button:
-                    signals:
-                      - signal: route/NAVIGATE
-                        path: /public/articles/${slug}
-                    text: Preview
-                    icon: visibility
-                    uesio.variant: uesio/appkit.secondary
-                    uesio.display:
-                      - type: wireHasNoChanges
-                        operator: EQUALS
-                        wire: article
-                      - type: wireHasNoChanges
-                        operator: EQUALS
-                        wire: attachment
-                - uesio/io.button:
-                    signals:
-                      - signal: wire/SAVE
-                        wires:
-                          - article
-                          - attachment
-                    text: Save
-                    hotkey: "meta+s"
-                    uesio.variant: uesio/appkit.primary
-                    uesio.display:
-                      - type: group
-                        conjunction: OR
-                        conditions:
-                          - type: wireHasChanges
-                            operator: EQUALS
-                            wire: article
-                          - type: wireHasChanges
-                            operator: EQUALS
-                            wire: attachment
-                - uesio/io.button:
-                    signals:
-                      - signal: wire/CANCEL
-                        wire: article
-                      - signal: wire/CANCEL
-                        wire: attachment
-                    text: Cancel
-                    uesio.variant: uesio/appkit.secondary
-                    uesio.display:
-                      - type: group
-                        conjunction: OR
-                        conditions:
-                          - type: wireHasChanges
-                            operator: EQUALS
-                            wire: article
-                          - type: wireHasChanges
-                            operator: EQUALS
-                            wire: attachment
-                - uesio/io.button:
-                    signals:
-                      - signal: component/CALL
-                        component: uesio/io.item
-                        componentsignal: TOGGLE_MODE
-                        targettype: specific
-                        componentid: article_item
-                    text: Read
-                    uesio.variant: uesio/appkit.secondary
-                    icon: task_alt
-                    uesio.display:
-                      - type: mergeValue
-                        operator: EQUALS
-                        sourceValue: $FieldMode{}
-                        value: EDIT
-                      - type: wireHasNoChanges
-                        operator: EQUALS
-                        wire: article
-                      - type: wireHasNoChanges
-                        operator: EQUALS
-                        wire: attachment
-                - uesio/io.button:
-                    signals:
-                      - signal: component/CALL
-                        component: uesio/io.item
-                        componentsignal: TOGGLE_MODE
-                        targettype: specific
-                        componentid: article_item
-                    text: EDIT
-                    uesio.variant: uesio/appkit.secondary
-                    icon: edit_square
-                    iconFill: false
-                    uesio.display:
-                      - type: mergeValue
-                        operator: NOT_EQUALS
-                        sourceValue: $FieldMode{}
-                        value: EDIT
-                      - type: wireHasNoChanges
-                        operator: EQUALS
-                        wire: article
-                      - type: wireHasNoChanges
-                        operator: EQUALS
-                        wire: attachment
-              content:
-                - uesio/io.box:
-                    uesio.variant: uesio/appkit.primarysection
-                    components:
-                      - uesio/io.grid:
-                          uesio.variant: uesio/appkit.two_columns
-                          items:
-                            - uesio/io.field:
-                                fieldId: uesio/cms.name
-                            - uesio/io.field:
-                                fieldId: uesio/cms.slug
-                            - uesio/io.field:
-                                fieldId: uesio/cms.author
-                            - uesio/io.field:
-                                fieldId: uesio/cms.published
-                            - uesio/io.field:
-                                fieldId: uesio/cms.hero_image
-                            - uesio/io.field:
-                                fieldId: uesio/cms.category
-                      - uesio/io.field:
-                          fieldId: uesio/cms.description
-
-                - uesio/io.box:
-                    uesio.variant: uesio/appkit.section
-                    components:
-                      - uesio/io.item:
-                          uesio.id: botAttachmentsList
-                          wire: attachment
-                          mode: EDIT
+          - uesio/appkit.layout_detail_split:
+              main:
+                - uesio/appkit.form_detail:
+                    wire: article
+                    avataricon: article
+                    actions:
+                      - uesio/io.button:
+                          signals:
+                            - signal: route/NAVIGATE
+                              path: /public/articles/${slug}
+                          text: Preview
+                          icon: visibility
+                          uesio.variant: uesio/appkit.secondary
+                          uesio.display:
+                            - type: wireHasNoChanges
+                              operator: EQUALS
+                              wire: article
+                            - type: wireHasNoChanges
+                              operator: EQUALS
+                              wire: attachment
+                      - uesio/io.button:
+                          signals:
+                            - signal: wire/SAVE
+                              wires:
+                                - article
+                                - attachment
+                          text: Save
+                          hotkey: "meta+s"
+                          uesio.variant: uesio/appkit.primary
+                          uesio.display:
+                            - type: group
+                              conjunction: OR
+                              conditions:
+                                - type: wireHasChanges
+                                  operator: EQUALS
+                                  wire: article
+                                - type: wireHasChanges
+                                  operator: EQUALS
+                                  wire: attachment
+                      - uesio/io.button:
+                          signals:
+                            - signal: wire/CANCEL
+                              wire: article
+                            - signal: wire/CANCEL
+                              wire: attachment
+                          text: Cancel
+                          uesio.variant: uesio/appkit.secondary
+                          uesio.display:
+                            - type: group
+                              conjunction: OR
+                              conditions:
+                                - type: wireHasChanges
+                                  operator: EQUALS
+                                  wire: article
+                                - type: wireHasChanges
+                                  operator: EQUALS
+                                  wire: attachment
+                      - uesio/io.button:
+                          signals:
+                            - signal: component/CALL
+                              component: uesio/io.item
+                              componentsignal: TOGGLE_MODE
+                              targettype: specific
+                              componentid: article_item
+                          text: Read
+                          uesio.variant: uesio/appkit.secondary
+                          icon: task_alt
+                          uesio.display:
+                            - type: mergeValue
+                              operator: EQUALS
+                              sourceValue: $FieldMode{}
+                              value: EDIT
+                            - type: wireHasNoChanges
+                              operator: EQUALS
+                              wire: article
+                            - type: wireHasNoChanges
+                              operator: EQUALS
+                              wire: attachment
+                      - uesio/io.button:
+                          signals:
+                            - signal: component/CALL
+                              component: uesio/io.item
+                              componentsignal: TOGGLE_MODE
+                              targettype: specific
+                              componentid: article_item
+                          text: EDIT
+                          uesio.variant: uesio/appkit.secondary
+                          icon: edit_square
+                          iconFill: false
+                          uesio.display:
+                            - type: mergeValue
+                              operator: NOT_EQUALS
+                              sourceValue: $FieldMode{}
+                              value: EDIT
+                            - type: wireHasNoChanges
+                              operator: EQUALS
+                              wire: article
+                            - type: wireHasNoChanges
+                              operator: EQUALS
+                              wire: attachment
+                    content:
+                      - uesio/io.box:
+                          uesio.variant: uesio/appkit.primarysection
                           components:
                             - uesio/io.grid:
                                 uesio.variant: uesio/appkit.two_columns
                                 items:
-                                  - uesio/io.fileattachment:
-                                      displayAs: TEXT
-                                      textOptions:
-                                        language: markdown
-                                  - uesio/io.box:
-                                      uesio.styleTokens:
-                                        root:
-                                          - h-[400px]
-                                          - overflow-auto
-                                      components:
-                                        - uesio/io.field:
-                                            uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
-                                            fieldId: uesio/core.data
-                                            uesio.context:
-                                              fieldMode: READ
-                                            labelPosition: none
-                                            displayAs: MARKDOWN
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.name
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.slug
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.author
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.published
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.hero_image
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.category
+                            - uesio/io.field:
+                                fieldId: uesio/cms.description
+                      - uesio/io.box:
+                          uesio.variant: uesio/appkit.section
+                          components:
+                            - uesio/io.item:
+                                uesio.id: article_item
+                                wire: attachment
+                                components:
+                                  - uesio/io.grid:
+                                      uesio.variant: uesio/appkit.two_columns
+                                      items:
+                                        - uesio/io.fileattachment:
+                                            displayAs: TEXT
+                                            textOptions:
+                                              language: markdown
+                                        - uesio/io.box:
+                                            uesio.styleTokens:
+                                              root:
+                                                - h-[400px]
+                                                - overflow-auto
+                                            components:
+                                              - uesio/io.field:
+                                                  uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
+                                                  fieldId: uesio/core.data
+                                                  uesio.context:
+                                                    fieldMode: READ
+                                                  labelPosition: none
+                                                  displayAs: MARKDOWN
   params:
     recordid:
       type: RECORD

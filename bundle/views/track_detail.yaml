@@ -6,6 +6,7 @@ definition:
     track:
       collection: uesio/cms.track
       fields:
+        uesio/cms.content:
         uesio/cms.name:
         uesio/cms.description:
         uesio/cms.slug:
@@ -51,6 +52,31 @@ definition:
         - field: uesio/cms.track
           valueSource: PARAM
           param: recordid
+    attachment:
+      collection: uesio/core.userfile
+      fields:
+        uesio/core.data:
+      conditions:
+        - field: uesio/core.recordid
+          value: $Param{recordid}
+        - field: uesio/core.collectionid
+          value: uesio/cms.track
+        - field: uesio/core.fieldid
+          value: uesio/cms.content
+      init:
+        query: true
+        create: true
+      defaults:
+        - field: uesio/core.recordid
+          value: $Param{recordid}
+        - field: uesio/core.collectionid
+          value: uesio/cms.track
+        - field: uesio/core.fieldid
+          value: uesio/cms.content
+        - field: uesio/core.filesourceid
+          value: uesio/core.platform
+        - field: uesio/core.path
+          value: track.md
   # Components determine the layout and composition of your view
   components:
     - uesio/io.viewlayout:
@@ -91,6 +117,87 @@ definition:
                       - uesio/appkit.form_detail:
                           wire: track
                           avataricon: library_books
+                          actions:
+                            - uesio/io.button:
+                                signals:
+                                  - signal: wire/SAVE
+                                    wires:
+                                      - track
+                                      - attachment
+                                text: Save
+                                hotkey: "meta+s"
+                                uesio.variant: uesio/appkit.primary
+                                uesio.display:
+                                  - type: group
+                                    conjunction: OR
+                                    conditions:
+                                      - type: wireHasChanges
+                                        operator: EQUALS
+                                        wire: track
+                                      - type: wireHasChanges
+                                        operator: EQUALS
+                                        wire: attachment
+                            - uesio/io.button:
+                                signals:
+                                  - signal: wire/CANCEL
+                                    wire: track
+                                  - signal: wire/CANCEL
+                                    wire: attachment
+                                text: Cancel
+                                uesio.variant: uesio/appkit.secondary
+                                uesio.display:
+                                  - type: group
+                                    conjunction: OR
+                                    conditions:
+                                      - type: wireHasChanges
+                                        operator: EQUALS
+                                        wire: track
+                                      - type: wireHasChanges
+                                        operator: EQUALS
+                                        wire: attachment
+                            - uesio/io.button:
+                                signals:
+                                  - signal: component/CALL
+                                    component: uesio/io.item
+                                    componentsignal: TOGGLE_MODE
+                                    targettype: specific
+                                    componentid: track_item
+                                text: Read
+                                uesio.variant: uesio/appkit.secondary
+                                icon: task_alt
+                                uesio.display:
+                                  - type: mergeValue
+                                    operator: EQUALS
+                                    sourceValue: $FieldMode{}
+                                    value: EDIT
+                                  - type: wireHasNoChanges
+                                    operator: EQUALS
+                                    wire: track
+                                  - type: wireHasNoChanges
+                                    operator: EQUALS
+                                    wire: attachment
+                            - uesio/io.button:
+                                signals:
+                                  - signal: component/CALL
+                                    component: uesio/io.item
+                                    componentsignal: TOGGLE_MODE
+                                    targettype: specific
+                                    componentid: track_item
+                                text: EDIT
+                                uesio.variant: uesio/appkit.secondary
+                                icon: edit_square
+                                iconFill: false
+                                uesio.display:
+                                  - type: mergeValue
+                                    operator: NOT_EQUALS
+                                    sourceValue: $FieldMode{}
+                                    value: EDIT
+                                  - type: wireHasNoChanges
+                                    operator: EQUALS
+                                    wire: track
+                                  - type: wireHasNoChanges
+                                    operator: EQUALS
+                                    wire: attachment
                           content:
                             - uesio/io.box:
                                 uesio.variant: uesio/appkit.primarysection
@@ -112,6 +219,33 @@ definition:
                                             fieldId: uesio/cms.iconcolor
                                   - uesio/io.field:
                                       fieldId: uesio/cms.hero_image
+                            - uesio/io.box:
+                                uesio.variant: uesio/appkit.section
+                                components:
+                                  - uesio/io.item:
+                                      uesio.id: track_item
+                                      wire: attachment
+                                      components:
+                                        - uesio/io.grid:
+                                            uesio.variant: uesio/appkit.two_columns
+                                            items:
+                                              - uesio/io.fileattachment:
+                                                  displayAs: TEXT
+                                                  textOptions:
+                                                    language: markdown
+                                              - uesio/io.box:
+                                                  uesio.styleTokens:
+                                                    root:
+                                                      - h-[400px]
+                                                      - overflow-auto
+                                                  components:
+                                                    - uesio/io.field:
+                                                        uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
+                                                        fieldId: uesio/core.data
+                                                        uesio.context:
+                                                          fieldMode: READ
+                                                        labelPosition: none
+                                                        displayAs: MARKDOWN
                     left:
                       - uesio/io.tabs:
                           uesio.variant: uesio/appkit.main
