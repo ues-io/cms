@@ -24,6 +24,7 @@ views:
 collections:
   uesio/cms.article: true
   uesio/cms.author: true
+  uesio/cms.author_link: true
   uesio/cms.category: true
   uesio/cms.series: true
   uesio/cms.series_track: true
