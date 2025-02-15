@@ -4,4 +4,5 @@ public: true
 pluralLabel: Author Links
 uniqueKey:
   - type
+  - author
 nameField: type
