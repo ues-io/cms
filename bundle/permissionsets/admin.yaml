@@ -22,16 +22,86 @@ views:
   uesio/cms.track_nav: true
   uesio/cms.track_new: true
 collections:
-  uesio/cms.article: true
-  uesio/cms.author: true
-  uesio/cms.author_link: true
-  uesio/cms.category: true
-  uesio/cms.series: true
-  uesio/cms.series_track: true
-  uesio/cms.track: true
-  uesio/cms.track_article: true
-  uesio/core.userfile: true
-  uesio/core.user: true
+  uesio/cms.article:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.author:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.author_link:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.category:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.series:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.series_track:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.track:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/cms.track_article:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/core.user:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
+  uesio/core.userfile:
+    read: true
+    create: true
+    edit: true
+    delete: true
+    modifyall: false
+    viewall: false
+    fields: {}
 routes:
   uesio/cms.article_detail: true
   uesio/cms.article_list: true
