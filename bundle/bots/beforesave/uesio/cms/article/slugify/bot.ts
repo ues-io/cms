@@ -1,6 +1,6 @@
 import { BeforeSaveBotApi } from "@uesio/bots"
 
-function slugify(bot: BeforeSaveBotApi) {
+export default function slugify(bot: BeforeSaveBotApi) {
   const changes = [...bot.inserts.get(), ...bot.updates.get()]
   changes.forEach((r) => {
     // If no slug, slugify the title

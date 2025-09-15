@@ -2,7 +2,7 @@ import { AfterSaveBotApi, WireRecord } from "@uesio/bots"
 
 type TrackCache = Record<string, Record<string, number> | undefined>
 
-function manage_ordering(bot: AfterSaveBotApi) {
+export default function manage_ordering(bot: AfterSaveBotApi) {
   // Figure out which tracks need processing
   const tracksToProcess: TrackCache = {}
 
