@@ -2,5 +2,4 @@ name: external_id
 label: External Id
 type: AUTONUMBER
 autonumber:
-  prefix: AUTHOR
-  leadingZeros: 4
+  format: AUTHOR-{id}

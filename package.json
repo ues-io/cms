@@ -1,24 +1,26 @@
 {
-	"name": "uesio/cms",
-	"version": "0.0.1",
-	"description": "",
-	"scripts": {
-		"build": "uesio pack",
-		"lint": "prettier --check . && eslint bundle/**/*.ts* && tsc --noEmit",
-		"push": "uesio pack && uesio workspace deploy",
-		"pull": "uesio workspace retrieve"
-	},
-	"devDependencies": {
-		"@types/react": "^18.3.12",
-		"@typescript-eslint/eslint-plugin": "^7.18.0",
-		"@typescript-eslint/parser": "^7.18.0",
-		"eslint": "8.57.0",
-		"eslint-config-prettier": "9.1.0",
-		"eslint-plugin-prettier": "^5.2.1",
-		"eslint-plugin-react": "^7.37.2",
-		"eslint-plugin-react-hooks": "^5.0.0",
-		"prettier": "^3.3.3",
-		"react": "^18.3.1",
-		"typescript": "^5.6.3"
-	}
+  "name": "@uesio/cms",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "uesio pack",
+    "lint": "prettier --check . && eslint . && tsc --noEmit",
+    "push": "uesio pack && uesio workspace deploy",
+    "pull": "uesio workspace retrieve",
+    "publish": "uesio bundle create"
+  },
+  "devDependencies": {
+    "@eslint/json": "^0.13.2",
+    "@types/react": "^19.1.13",
+    "eslint": "^9.35.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-yml": "^1.18.0",
+    "prettier": "^3.6.2",
+    "react": "^19.1.1",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.43.0"
+  }
 }

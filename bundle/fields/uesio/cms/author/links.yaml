@@ -1,6 +1,6 @@
 name: links
-type: REFERENCEGROUP
 label: Links
+type: REFERENCEGROUP
 referenceGroup:
   collection: author_link
   field: author
