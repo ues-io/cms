@@ -17,7 +17,7 @@ cd cms
 npm run init
 ```
 
--   Select "uesio/cms" as the app.
+- Select "uesio/cms" as the app.
 
 ## Development
 
