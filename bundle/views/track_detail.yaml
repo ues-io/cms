@@ -126,6 +126,11 @@ definition:
                                     wires:
                                       - track
                                       - attachment
+                                  - signal: component/CALL
+                                    component: uesio/io.item
+                                    componentsignal: SET_READ_MODE
+                                    targettype: specific
+                                    componentid: track_item
                                 text: Save
                                 hotkey: "meta+s"
                                 uesio.variant: uesio/appkit.primary
@@ -145,12 +150,21 @@ definition:
                                     wire: track
                                   - signal: wire/CANCEL
                                     wire: attachment
+                                  - signal: component/CALL
+                                    component: uesio/io.item
+                                    componentsignal: SET_READ_MODE
+                                    targettype: specific
+                                    componentid: track_item
                                 text: Cancel
                                 uesio.variant: uesio/appkit.secondary
                                 uesio.display:
                                   - type: group
                                     conjunction: OR
                                     conditions:
+                                      - type: mergeValue
+                                        operator: EQUALS
+                                        sourceValue: $FieldMode{}
+                                        value: EDIT                                    
                                       - type: wireHasChanges
                                         operator: EQUALS
                                         wire: track
@@ -161,28 +175,7 @@ definition:
                                 signals:
                                   - signal: component/CALL
                                     component: uesio/io.item
-                                    componentsignal: TOGGLE_MODE
-                                    targettype: specific
-                                    componentid: track_item
-                                text: Read
-                                uesio.variant: uesio/appkit.secondary
-                                icon: task_alt
-                                uesio.display:
-                                  - type: mergeValue
-                                    operator: EQUALS
-                                    sourceValue: $FieldMode{}
-                                    value: EDIT
-                                  - type: wireHasNoChanges
-                                    operator: EQUALS
-                                    wire: track
-                                  - type: wireHasNoChanges
-                                    operator: EQUALS
-                                    wire: attachment
-                            - uesio/io.button:
-                                signals:
-                                  - signal: component/CALL
-                                    component: uesio/io.item
-                                    componentsignal: TOGGLE_MODE
+                                    componentsignal: SET_EDIT_MODE
                                     targettype: specific
                                     componentid: track_item
                                 text: EDIT
