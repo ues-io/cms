@@ -59,7 +59,7 @@ definition:
       conditions:
         - field: uesio/core.recordid
           value: $Param{recordid}
-        - field: uesio/core.collectionid
+        - field: uesio/core.recordid->uesio/core.collection
           value: uesio/cms.track
         - field: uesio/core.fieldid
           value: uesio/cms.content
@@ -69,14 +69,19 @@ definition:
       defaults:
         - field: uesio/core.recordid
           value: $Param{recordid}
+          valueSource: VALUE
         - field: uesio/core.collectionid
           value: uesio/cms.track
+          valueSource: VALUE
         - field: uesio/core.fieldid
           value: uesio/cms.content
+          valueSource: VALUE
         - field: uesio/core.filesourceid
           value: uesio/core.platform
+          valueSource: VALUE
         - field: uesio/core.path
           value: track.md
+          valueSource: VALUE
   # Components determine the layout and composition of your view
   components:
     - uesio/io.viewlayout:

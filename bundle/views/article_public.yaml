@@ -18,7 +18,9 @@ definition:
               selected: ${article:slug}
       providesContexts:
         - type: WIRE
+          wireProperty: wire
         - type: RECORD
+          wireProperty: wire
   # Wires connect to data in collections
   wires:
     article:
