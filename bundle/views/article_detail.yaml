@@ -209,6 +209,8 @@ definition:
                                       items:
                                         - uesio/io.fileattachment:
                                             displayAs: TEXT
+                                            editMode: DATA
+                                            showTile: false
                                             textOptions:
                                               language: markdown
                                         - uesio/io.box:
@@ -217,13 +219,9 @@ definition:
                                                 - h-[400px]
                                                 - overflow-auto
                                             components:
-                                              - uesio/io.field:
+                                              - uesio/io.markdown:
                                                   uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
-                                                  fieldId: uesio/core.data
-                                                  uesio.context:
-                                                    fieldMode: READ
-                                                  labelPosition: none
-                                                  displayAs: MARKDOWN
+                                                  markdown: $Record{uesio/core.data}
   params:
     recordid:
       type: RECORD

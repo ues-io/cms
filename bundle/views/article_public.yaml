@@ -42,6 +42,22 @@ definition:
         - field: uesio/cms.slug
           param: slug
           valueSource: PARAM
+    attachment:
+      collection: uesio/core.userfile
+      fields:
+        uesio/core.data:
+      conditions:
+        - field: uesio/core.recordid
+          valueSource: LOOKUP
+          lookupWire: article
+          lookupField: uesio/core.id
+        - field: uesio/core.recordid->uesio/core.collection
+          value: uesio/cms.article
+        - field: uesio/core.fieldid
+          value: uesio/cms.content
+      init:
+        query: true
+        create: false
   # Components determine the layout and composition of your view
   components:
     - uesio/io.item:
@@ -105,11 +121,12 @@ definition:
                           initials: ${author->initials}
                           imagefield: author->picture
                           avatarVariant: uesio/io.default
-                - uesio/io.field:
+                - uesio/io.markdown:
                     uesio.variant: uesio/io.markdownfield:uesio/cms.markdown
-                    fieldId: uesio/cms.content
-                    labelPosition: none
-                    displayAs: MARKDOWN
+                    markdown: $Record{attachment:uesio/core.data}
+                    uesio.styleTokens:
+                      root:
+                        - py-2.5
   params:
     slug:
       type: TEXT
