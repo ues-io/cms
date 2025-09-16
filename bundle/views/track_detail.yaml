@@ -57,8 +57,10 @@ definition:
       fields:
         uesio/core.data:
       conditions:
-        - field: uesio/core.recordid
-          value: $Param{recordid}
+        - field: uesio/core.id
+          valueSource: LOOKUP
+          lookupWire: track
+          lookupField: uesio/cms.content->uesio/core.id
         - field: uesio/core.recordid->uesio/core.collection
           value: uesio/cms.track
         - field: uesio/core.fieldid

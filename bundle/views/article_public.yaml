@@ -47,10 +47,10 @@ definition:
       fields:
         uesio/core.data:
       conditions:
-        - field: uesio/core.recordid
+        - field: uesio/core.id
           valueSource: LOOKUP
           lookupWire: article
-          lookupField: uesio/core.id
+          lookupField: uesio/cms.content->uesio/core.id
         - field: uesio/core.recordid->uesio/core.collection
           value: uesio/cms.article
         - field: uesio/core.fieldid
