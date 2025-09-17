@@ -213,7 +213,9 @@ definition:
                                 fieldId: uesio/cms.content
                                 uesio.display:
                                   - type: wireHasNoRecords
-                                    wire: attachment                                
+                                    wire: attachment
+                                  - type: fieldMode
+                                    mode: READ
                       - uesio/io.box:
                           uesio.variant: uesio/appkit.section
                           components:
