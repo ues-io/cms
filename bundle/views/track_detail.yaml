@@ -174,7 +174,7 @@ definition:
                                       - type: mergeValue
                                         operator: EQUALS
                                         sourceValue: $FieldMode{}
-                                        value: EDIT                                    
+                                        value: EDIT
                                       - type: wireHasChanges
                                         operator: EQUALS
                                         wire: track

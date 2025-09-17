@@ -144,7 +144,7 @@ definition:
                               component: uesio/io.item
                               componentsignal: SET_READ_MODE
                               targettype: specific
-                              componentid: article_item                              
+                              componentid: article_item
                           text: Cancel
                           uesio.variant: uesio/appkit.secondary
                           uesio.display:
@@ -172,7 +172,7 @@ definition:
                               wire: attachment
                               uesio.conditions:
                                 - type: wireHasNoRecords
-                                  wire: attachment                              
+                                  wire: attachment
                           text: EDIT
                           uesio.variant: uesio/appkit.secondary
                           icon: edit_square
