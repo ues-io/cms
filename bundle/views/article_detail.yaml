@@ -37,7 +37,7 @@ definition:
           value: uesio/cms.content
       init:
         query: true
-        create: true
+        create: false
       defaults:
         - field: uesio/core.recordid
           value: $Param{recordid}
@@ -49,7 +49,15 @@ definition:
           value: uesio/core.platform
           valueSource: VALUE
         - field: uesio/core.path
-          value: article.md
+          # TODO: Ideally we use `new Date().getTime()` here but merge syntax doesn't support getting
+          # current time so we generate a random number instead. Once merge syntax includes support
+          # for current time, this should be migrated to use it as its more appropriate. Alternatively
+          # could use a bot to detect an empty path or a "fixed" pattern but that approach comes
+          # with additional risks since it's not tightly coupled to an operation.
+          value: article-$Formula{random()}.md
+          valueSource: VALUE
+        - field: uesio/core.data
+          value: ""
           valueSource: VALUE
   # Components determine the layout and composition of your view
   components:
@@ -160,6 +168,11 @@ definition:
                               componentsignal: SET_EDIT_MODE
                               targettype: specific
                               componentid: article_item
+                            - signal: wire/CREATE_RECORD
+                              wire: attachment
+                              uesio.conditions:
+                                - type: wireHasNoRecords
+                                  wire: attachment                              
                           text: EDIT
                           uesio.variant: uesio/appkit.secondary
                           icon: edit_square
@@ -196,6 +209,11 @@ definition:
                                       fieldId: uesio/cms.category
                             - uesio/io.field:
                                 fieldId: uesio/cms.description
+                            - uesio/io.field:
+                                fieldId: uesio/cms.content
+                                uesio.display:
+                                  - type: wireHasNoRecords
+                                    wire: attachment                                
                       - uesio/io.box:
                           uesio.variant: uesio/appkit.section
                           components:
