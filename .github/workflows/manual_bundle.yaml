@@ -25,6 +25,13 @@ jobs:
       environment: dev
       type: ${{ inputs.type }}
     secrets: inherit
+  bundle_stage:
+    name: Create ${{ inputs.type }} bundle in STAGE environment
+    uses: ./.github/workflows/bundle.yaml
+    with:
+      environment: stage
+      type: ${{ inputs.type }}
+    secrets: inherit    
   bundle_prod:
     name: Create ${{ inputs.type }} bundle in PROD environment
     uses: ./.github/workflows/bundle.yaml

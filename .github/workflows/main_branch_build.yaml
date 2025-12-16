@@ -12,6 +12,13 @@ jobs:
       environment: dev
       type: patch
     secrets: inherit
+  bundle_stage:
+    name: Create patch bundle in STAGE
+    uses: ./.github/workflows/bundle.yaml
+    with:
+      environment: stage
+      type: patch
+    secrets: inherit    
   bundle_prod:
     name: Create patch bundle in PROD
     needs: bundle_dev
