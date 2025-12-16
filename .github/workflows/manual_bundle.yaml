@@ -28,14 +28,15 @@ jobs:
   bundle_stage:
     name: Create ${{ inputs.type }} bundle in STAGE environment
     uses: ./.github/workflows/bundle.yaml
+    needs: bundle_dev
     with:
       environment: stage
       type: ${{ inputs.type }}
-    secrets: inherit    
+    secrets: inherit
   bundle_prod:
     name: Create ${{ inputs.type }} bundle in PROD environment
     uses: ./.github/workflows/bundle.yaml
-    needs: bundle_dev
+    needs: bundle_stage
     with:
       environment: prod
       type: ${{ inputs.type }}
