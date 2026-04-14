@@ -9,6 +9,7 @@ definition:
         uesio/cms.firstname:
         uesio/cms.lastname:
         uesio/cms.description:
+        uesio/cms.short_description:
         uesio/cms.external_id:
         uesio/cms.title:
         uesio/cms.order:
@@ -109,6 +110,8 @@ definition:
                                             fieldId: uesio/cms.location
                                         - uesio/io.field:
                                             fieldId: uesio/cms.order
+                                  - uesio/io.field:
+                                      fieldId: uesio/cms.short_description
                                   - uesio/io.field:
                                       fieldId: uesio/cms.description
                                   - uesio/io.field:
