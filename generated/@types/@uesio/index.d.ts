@@ -201,6 +201,8 @@ interface AsAdminApi {
 }
 interface ListenerBotApi<T = Record<string, BotParamValue>> {
   addResult: (key: string, value: FieldValue | undefined) => void
+  addError: (error: string) => void
+  getErrors: () => string[]
   load: (loadRequest: LoadRequest) => Record<string, FieldValue>[]
   params: BotParamsApi<T>
   delete: (collectionName: string, records: WireRecord[]) => void
@@ -238,6 +240,11 @@ interface ListenerBotApi<T = Record<string, BotParamValue>> {
   ) => void
   getFileUrl: (fileKey: string, filePath: string) => string
   getFileContents: (fileKey: string, filePath: string) => string
+  getUserFileContentsBase64: (fileId: string) => {
+    contentBase64: string
+    mimeType: string
+    path: string
+  }
   mergeTemplate: (
     template: string,
     params: Record<string, FieldValue>,
@@ -913,6 +920,10 @@ interface UtilityPropsPlus extends UtilityProps {
   [x: string]: unknown
 }
 
+type UtilityWrapperProps<T extends UtilityProps = UtilityPropsPlus> = T & {
+  utilityKey: MetadataKey
+}
+
 export namespace component {
   export namespace registry {
     export function register(key: MetadataKey, componentType: UC): void
@@ -928,6 +939,9 @@ export namespace component {
   export function getUtility<T extends UtilityProps = UtilityPropsPlus>(
     key: MetadataKey,
   ): UtilityComponent<T>
+  export function Utility<T extends UtilityProps = UtilityPropsPlus>(
+    props: UtilityWrapperProps<T>,
+  ): ReturnType<UtilityComponent<T>>
 }
 
 //
