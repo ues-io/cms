@@ -8,6 +8,7 @@ definition:
       fields:
         uesio/cms.firstname:
         uesio/cms.lastname:
+        uesio/cms.short_description
         uesio/cms.description:
         uesio/cms.short_description:
         uesio/cms.external_id:
